@@ -1,0 +1,159 @@
+{
+  "@@locale": "en",
+  "appTitle": "Pulse",
+  "tagline": "Focus on the work.",
+  "navHome": "Train",
+  "navMusic": "Music",
+  "navHistory": "History",
+  "navSettings": "Settings",
+  "start": "Start",
+  "play": "Play",
+  "pause": "Pause",
+  "resume": "Resume",
+  "skip": "Skip",
+  "stop": "End",
+  "done": "Done",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "ok": "OK",
+  "prepare": "Prepare",
+  "work": "Work",
+  "rest": "Rest",
+  "roundOf": "Round {current} of {total}",
+  "@roundOf": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "totalRemaining": "{time} left",
+  "@totalRemaining": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
+  "newRoutine": "New routine",
+  "editRoutine": "Edit routine",
+  "nameLabel": "Name",
+  "modeLabel": "Mode",
+  "modeSeries": "Series",
+  "modeTabata": "Tabata",
+  "modeHiit": "HIIT",
+  "modeCustom": "Custom",
+  "prepareTime": "Prepare",
+  "workTime": "Work",
+  "restTime": "Rest",
+  "rounds": "Rounds",
+  "exerciseLabel": "Exercise",
+  "exerciseHint": "Push-ups, squats…",
+  "playlist": "Playlist",
+  "noPlaylist": "No music",
+  "addSegment": "Add segment",
+  "presets": "Presets",
+  "yourRoutines": "Your routines",
+  "lastSession": "Ready when you are",
+  "createPlaylist": "New playlist",
+  "addToPlaylist": "Add to playlist",
+  "songs": "Songs",
+  "playlists": "Playlists",
+  "permissionMusicTitle": "Your music stays on this phone",
+  "permissionMusicBody": "Pulse plays files you already downloaded. Music keeps going through work and rest. Beeps sit on top — nothing is uploaded.",
+  "allowAccess": "Allow access",
+  "pickFiles": "Add files",
+  "noSongs": "No songs found on this device.",
+  "nowPlaying": "Now playing",
+  "noHistory": "Finish a session and it will appear here.",
+  "language": "Language",
+  "languageSystem": "System",
+  "languageEs": "Español",
+  "languageEn": "English",
+  "haptics": "Haptics",
+  "countdownBeeps": "Countdown beeps",
+  "musicDuringRest": "Music",
+  "musicPause": "Pause on rest",
+  "musicDuck": "Slightly lower on rest",
+  "musicKeep": "Keep playing",
+  "musicOff": "Off",
+  "privacy": "Privacy",
+  "privacyBody": "Pulse stores routines, history and playlists only on this device. No account, no ads, no tracking.",
+  "finishedTitle": "Session complete",
+  "finishedBody": "{time} of focused work",
+  "@finishedBody": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
+  "backHome": "Back home",
+  "untitled": "Untitled",
+  "presetPushups": "Push-ups 3×1:00",
+  "presetTabata": "Tabata 20/10",
+  "presetHiit": "HIIT 40/20",
+  "presetSprint": "10×5/10",
+  "deleteRoutine": "Delete routine?",
+  "confirmStop": "End this session?",
+  "emptyPlaylists": "Create a playlist for your next session.",
+  "searchSongs": "Search songs",
+  "artistUnknown": "Unknown artist",
+  "workoutMusicHint": "Music keeps playing. Beeps sit on top.",
+  "cannotStart": "Add at least one work interval",
+  "saved": "Saved",
+  "versionLabel": "Version {version}",
+  "@versionLabel": {
+    "placeholders": {
+      "version": {"type": "String"}
+    }
+  },
+  "openSettings": "Open settings",
+  "playlistName": "Playlist name",
+  "removeTrack": "Remove",
+  "playAll": "Play all",
+  "noRoutines": "Create a routine to start training.",
+  "segmentWork": "Work",
+  "segmentRest": "Rest",
+  "saveAndStart": "Save & start",
+  "historyCompleted": "Completed",
+  "historyStopped": "Stopped",
+  "shuffle": "Shuffle",
+  "repeat": "Repeat",
+  "next": "Next",
+  "previous": "Previous",
+  "aboutPulse": "Pulse is an interval timer you can read from across the room: giant digits, a theme you pick, and music that never stops for a beep.",
+  "appearance": "Look",
+  "themeLabel": "Theme",
+  "timerLayout": "Timer layout",
+  "layoutGiant": "Giant",
+  "layoutRing": "Ring",
+  "layoutBoth": "Both",
+  "themeClock": "Clock",
+  "themeAtelier": "Atelier",
+  "themeLab": "Lab",
+  "themeTierra": "Tierra",
+  "musicPolicyHint": "Beeps play over your playlist. On rest you can pause, dip the volume a little, or leave it.",
+  "sessionSummary": "{rounds} rounds · {work} work · {rest} rest",
+  "@sessionSummary": {
+    "placeholders": {
+      "rounds": {"type": "int"},
+      "work": {"type": "String"},
+      "rest": {"type": "String"}
+    }
+  },
+  "sessionTotal": "Total {time}",
+  "@sessionTotal": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
+  "customSummary": "{count} work intervals",
+  "@customSummary": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "cycleLayout": "Change timer layout",
+  "edit": "Edit",
+  "webDemoHint": "Web demo — full music library and lock-screen controls live in the Android app. Timer, themes and layouts work here.",
+  "emptyRoutinesBody": "Build a round of work and rest, then start. You can change the look anytime in Settings.",
+  "tapToPause": "Tap the numbers to pause",
+  "emptyHistoryBody": "Finish a session and it will show up here."
+}

@@ -1,0 +1,59 @@
+name: pulse
+description: "Minimalist interval timer with local music playlists for focused workouts"
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_riverpod: ^2.6.1
+  go_router: ^18.0.0
+  drift: ^2.34.3
+  drift_flutter: ^0.3.1
+  sqlite3_flutter_libs: ^0.6.0+eol
+  just_audio: ^0.10.6
+  audio_service: ^0.18.19
+  audio_session: ^0.2.4
+  on_audio_query: ^2.9.0
+  permission_handler: ^13.0.1
+  wakelock_plus: ^1.7.0
+  shared_preferences: ^2.5.5
+  intl: ^0.20.3
+  uuid: ^4.6.0
+  collection: ^1.19.1
+  path_provider: ^2.1.6
+  file_picker: ^12.1.0
+  path: ^1.9.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  drift_dev: ^2.34.5
+  build_runner: ^2.16.0
+
+flutter:
+  generate: true
+  uses-material-design: true
+  assets:
+    - assets/sounds/
+    - assets/icon/icon.png
+  fonts:
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/Manrope-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Manrope-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Manrope-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Manrope-Bold.ttf
+          weight: 700

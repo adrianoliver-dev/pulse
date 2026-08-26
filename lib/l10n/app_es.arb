@@ -1,0 +1,159 @@
+{
+  "@@locale": "es",
+  "appTitle": "Pulse",
+  "tagline": "Enfócate en el ejercicio.",
+  "navHome": "Entrenar",
+  "navMusic": "Música",
+  "navHistory": "Historial",
+  "navSettings": "Ajustes",
+  "start": "Empezar",
+  "play": "Play",
+  "pause": "Pausa",
+  "resume": "Seguir",
+  "skip": "Saltar",
+  "stop": "Terminar",
+  "done": "Listo",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "delete": "Eliminar",
+  "ok": "OK",
+  "prepare": "Preparación",
+  "work": "Trabajo",
+  "rest": "Descanso",
+  "roundOf": "Ronda {current} de {total}",
+  "@roundOf": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "totalRemaining": "{time} restantes",
+  "@totalRemaining": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
+  "newRoutine": "Nueva rutina",
+  "editRoutine": "Editar rutina",
+  "nameLabel": "Nombre",
+  "modeLabel": "Modo",
+  "modeSeries": "Series",
+  "modeTabata": "Tabata",
+  "modeHiit": "HIIT",
+  "modeCustom": "Personalizado",
+  "prepareTime": "Preparación",
+  "workTime": "Trabajo",
+  "restTime": "Descanso",
+  "rounds": "Series",
+  "exerciseLabel": "Ejercicio",
+  "exerciseHint": "Lagartijas, sentadillas…",
+  "playlist": "Playlist",
+  "noPlaylist": "Sin música",
+  "addSegment": "Añadir segmento",
+  "presets": "Plantillas",
+  "yourRoutines": "Tus rutinas",
+  "lastSession": "Cuando quieras",
+  "createPlaylist": "Nueva playlist",
+  "addToPlaylist": "Añadir a playlist",
+  "songs": "Canciones",
+  "playlists": "Playlists",
+  "permissionMusicTitle": "Tu música se queda en el teléfono",
+  "permissionMusicBody": "Pulse reproduce archivos que ya descargaste. La música sigue en trabajo y descanso. Los beeps suenan encima. Nada se sube a internet.",
+  "allowAccess": "Permitir acceso",
+  "pickFiles": "Añadir archivos",
+  "noSongs": "No hay canciones en este dispositivo.",
+  "nowPlaying": "Reproduciendo",
+  "noHistory": "Termina una sesión y aparecerá aquí.",
+  "language": "Idioma",
+  "languageSystem": "Sistema",
+  "languageEs": "Español",
+  "languageEn": "English",
+  "haptics": "Hápticos",
+  "countdownBeeps": "Beeps de cuenta atrás",
+  "musicDuringRest": "Música",
+  "musicPause": "Pausar en el descanso",
+  "musicDuck": "Bajar un poco en el descanso",
+  "musicKeep": "Seguir sonando",
+  "musicOff": "Apagada",
+  "privacy": "Privacidad",
+  "privacyBody": "Pulse guarda rutinas, historial y playlists solo en este dispositivo. Sin cuenta, sin anuncios, sin rastreo.",
+  "finishedTitle": "Sesión completa",
+  "finishedBody": "{time} de trabajo enfocado",
+  "@finishedBody": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
+  "backHome": "Volver",
+  "untitled": "Sin título",
+  "presetPushups": "Lagartijas 3×1:00",
+  "presetTabata": "Tabata 20/10",
+  "presetHiit": "HIIT 40/20",
+  "presetSprint": "10×5/10",
+  "deleteRoutine": "¿Eliminar rutina?",
+  "confirmStop": "¿Terminar esta sesión?",
+  "emptyPlaylists": "Crea una playlist para tu próxima sesión.",
+  "searchSongs": "Buscar canciones",
+  "artistUnknown": "Artista desconocido",
+  "workoutMusicHint": "La música no se detiene. Los beeps suenan encima.",
+  "cannotStart": "Añade al menos un intervalo de trabajo",
+  "saved": "Guardado",
+  "versionLabel": "Versión {version}",
+  "@versionLabel": {
+    "placeholders": {
+      "version": {"type": "String"}
+    }
+  },
+  "openSettings": "Abrir ajustes",
+  "playlistName": "Nombre de la playlist",
+  "removeTrack": "Quitar",
+  "playAll": "Reproducir",
+  "noRoutines": "Crea una rutina para empezar.",
+  "segmentWork": "Trabajo",
+  "segmentRest": "Descanso",
+  "saveAndStart": "Guardar y empezar",
+  "historyCompleted": "Completada",
+  "historyStopped": "Detenida",
+  "shuffle": "Aleatorio",
+  "repeat": "Repetir",
+  "next": "Siguiente",
+  "previous": "Anterior",
+  "aboutPulse": "Pulse es un temporizador de intervalos para leer de lejos: números grandes, un tema que eliges, y música que no se corta cuando suena el beep.",
+  "appearance": "Apariencia",
+  "themeLabel": "Tema",
+  "timerLayout": "Formato del contador",
+  "layoutGiant": "Gigante",
+  "layoutRing": "Anillo",
+  "layoutBoth": "Ambos",
+  "themeClock": "Reloj",
+  "themeAtelier": "Atelier",
+  "themeLab": "Lab",
+  "themeTierra": "Tierra",
+  "musicPolicyHint": "Los beeps suenan encima de la playlist. En el descanso puedes pausar, bajar un poco o dejarla igual.",
+  "sessionSummary": "{rounds} rondas · {work} trabajo · {rest} descanso",
+  "@sessionSummary": {
+    "placeholders": {
+      "rounds": {"type": "int"},
+      "work": {"type": "String"},
+      "rest": {"type": "String"}
+    }
+  },
+  "sessionTotal": "Total {time}",
+  "@sessionTotal": {
+    "placeholders": {
+      "time": {"type": "String"}
+    }
+  },
+  "customSummary": "{count} intervalos de trabajo",
+  "@customSummary": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "cycleLayout": "Cambiar formato del contador",
+  "edit": "Editar",
+  "webDemoHint": "Demo web — la biblioteca de música y el control en pantalla bloqueada van en Android. Aquí puedes probar el timer, los temas y los formatos.",
+  "emptyRoutinesBody": "Arma trabajo y descanso, y dale a empezar. El aspecto se cambia cuando quieras en Ajustes.",
+  "tapToPause": "Toca los números para pausar",
+  "emptyHistoryBody": "Termina una sesión y aparecerá aquí."
+}
