@@ -9,11 +9,58 @@ import '../../app/theme.dart';
 import '../../core/format.dart';
 import '../../core/models/phase.dart';
 import '../../core/models/workout_plan.dart';
+import '../../data/repositories/routine_repository.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../library/routine_labels.dart';
 import '../music/now_playing_bar.dart';
 import 'workout_clock.dart';
 import 'workout_controller.dart';
+
+class WorkoutRoutePage extends ConsumerWidget {
+  const WorkoutRoutePage({super.key, required this.routineId});
+
+  final String routineId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final routines = ref.watch(routinesProvider);
+    return routines.when(
+      loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
+      error: (e, _) => Scaffold(body: Center(child: Text('$e'))),
+      data: (rows) {
+        for (final row in rows) {
+          if (row.id == routineId) {
+            return WorkoutScreen(spec: RoutineRepository.toSpec(row));
+          }
+        }
+        return Scaffold(
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(28),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    l10n.appTitle,
+                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(l10n.noRoutines, textAlign: TextAlign.center),
+                  const SizedBox(height: 20),
+                  FilledButton(
+                    onPressed: () => context.go('/'),
+                    child: Text(l10n.backHome),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
 
 class WorkoutScreen extends ConsumerStatefulWidget {
   const WorkoutScreen({super.key, required this.spec});
@@ -94,7 +141,8 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
 
     final clock = Semantics(
       button: true,
-      label: snap.isPaused ? l10n.resume : l10n.pause,
+      label:
+          '${_phaseLabel(snap.phase, l10n)} ${TimeFormat.workoutClock(snap.remaining, snap.segmentDuration)}. ${snap.isPaused ? l10n.resume : l10n.pause}',
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(

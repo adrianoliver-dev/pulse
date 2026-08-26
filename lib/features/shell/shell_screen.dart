@@ -51,12 +51,15 @@ class ShellScreen extends StatelessWidget {
         if (kIsWeb)
           Material(
             color: palette.surfaceHigh,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(
-                l10n.webDemoHint,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: palette.textMuted, fontSize: 13, height: 1.3),
+            child: SafeArea(
+              bottom: false,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Text(
+                  l10n.webDemoHint,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: palette.textMuted, fontSize: 13, height: 1.3),
+                ),
               ),
             ),
           ),
@@ -90,8 +93,8 @@ class ShellScreen extends StatelessWidget {
               destinations: [
                 for (final d in destinations)
                   NavigationRailDestination(
-                    icon: Icon(d.icon),
-                    selectedIcon: Icon(d.selectedIcon),
+                    icon: Icon(d.icon, semanticLabel: d.label),
+                    selectedIcon: Icon(d.selectedIcon, semanticLabel: d.label),
                     label: Text(d.label),
                   ),
               ],
@@ -112,8 +115,8 @@ class ShellScreen extends StatelessWidget {
         destinations: [
           for (final d in destinations)
             NavigationDestination(
-              icon: Icon(d.icon),
-              selectedIcon: Icon(d.selectedIcon),
+              icon: Icon(d.icon, semanticLabel: d.label),
+              selectedIcon: Icon(d.selectedIcon, semanticLabel: d.label),
               label: d.label,
             ),
         ],

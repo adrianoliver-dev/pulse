@@ -46,8 +46,8 @@ class SettingsScreen extends ConsumerWidget {
                   onTap: () => ref.read(settingsProvider.notifier).setThemeId(id),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 180),
-                    width: 78,
-                    padding: const EdgeInsets.fromLTRB(8, 10, 8, 8),
+                    width: 92,
+                    padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
                     decoration: BoxDecoration(
                       color: swatch.background,
                       borderRadius: BorderRadius.circular(14),
@@ -93,12 +93,21 @@ class SettingsScreen extends ConsumerWidget {
               children: [
                 for (final layout in TimerLayout.values)
                   ChoiceChip(
-                    label: Text(switch (layout) {
-                      TimerLayout.giant => l10n.layoutGiant,
-                      TimerLayout.ring => l10n.layoutRing,
-                      TimerLayout.both => l10n.layoutBoth,
-                    }),
+                    label: Text(
+                      switch (layout) {
+                        TimerLayout.giant => l10n.layoutGiant,
+                        TimerLayout.ring => l10n.layoutRing,
+                        TimerLayout.both => l10n.layoutBoth,
+                      },
+                      style: TextStyle(
+                        color: settings.timerLayout == layout
+                            ? palette.background
+                            : palette.text,
+                      ),
+                    ),
                     selected: settings.timerLayout == layout,
+                    selectedColor: palette.accent,
+                    backgroundColor: palette.surfaceHigh,
                     onSelected: (_) =>
                         ref.read(settingsProvider.notifier).setTimerLayout(layout),
                   ),

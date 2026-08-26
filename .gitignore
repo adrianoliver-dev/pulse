@@ -61,3 +61,8 @@ assets/branding-jhon/
 # Vercel
 .vercel
 
+# Local APK copies and AGP leftovers
+*.apk
+/dist/
+/android/.kotlin/
+

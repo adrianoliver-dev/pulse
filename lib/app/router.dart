@@ -66,13 +66,9 @@ GoRouter createRouter() {
       ),
       GoRoute(
         parentNavigatorKey: _rootKey,
-        path: '/workout',
+        path: '/workout/:id',
         builder: (context, state) {
-          final extra = state.extra;
-          if (extra is! RoutineSpec) {
-            return const Scaffold(body: Center(child: Text('Missing routine')));
-          }
-          return WorkoutScreen(spec: extra);
+          return WorkoutRoutePage(routineId: state.pathParameters['id']!);
         },
       ),
       GoRoute(

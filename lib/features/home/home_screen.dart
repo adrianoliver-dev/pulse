@@ -164,7 +164,7 @@ class _FeaturedCard extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: FilledButton(
-                  onPressed: () => context.push('/workout', extra: spec),
+                  onPressed: () => context.push('/workout/${spec.id}'),
                   child: Text(l10n.start),
                 ),
               ),
@@ -201,7 +201,7 @@ class _PresetChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         child: InkWell(
           borderRadius: BorderRadius.circular(18),
-          onTap: () => context.push('/workout', extra: spec),
+          onTap: () => context.push('/workout/${spec.id}'),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(14, 10, 6, 14),
             child: Column(
@@ -265,7 +265,7 @@ class _RoutineTile extends StatelessWidget {
         trailing: IconButton(
           tooltip: l10n.start,
           icon: Icon(Icons.play_arrow_rounded, color: palette.accent),
-          onPressed: () => context.push('/workout', extra: spec),
+          onPressed: () => context.push('/workout/${spec.id}'),
         ),
         onTap: () => context.push('/editor', extra: spec),
       ),

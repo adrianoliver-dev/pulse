@@ -67,7 +67,7 @@ class _EditorScreenState extends ConsumerState<EditorScreen> {
     await ref.read(routineRepositoryProvider).save(spec);
     if (!mounted) return;
     if (start) {
-      context.pushReplacement('/workout', extra: spec);
+      context.pushReplacement('/workout/${spec.id}');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.saved)));
       context.pop();
@@ -226,19 +226,39 @@ class _EditorScreenState extends ConsumerState<EditorScreen> {
                     children: [
                       Row(
                         children: [
-                          SegmentedButton<PhaseKind>(
-                            segments: [
-                              ButtonSegment(value: PhaseKind.work, label: Text(l10n.segmentWork)),
-                              ButtonSegment(value: PhaseKind.rest, label: Text(l10n.segmentRest)),
-                            ],
-                            selected: {seg.kind},
-                            onSelectionChanged: (set) {
-                              final next = [..._spec.custom];
-                              next[i] = CustomSegment(kind: set.first, seconds: seg.seconds, label: seg.label);
-                              setState(() => _spec = _spec.copyWith(custom: next));
-                            },
+                          Expanded(
+                            child: Wrap(
+                              spacing: 8,
+                              children: [
+                                ChoiceChip(
+                                  label: Text(l10n.segmentWork),
+                                  selected: seg.kind == PhaseKind.work,
+                                  onSelected: (_) {
+                                    final next = [..._spec.custom];
+                                    next[i] = CustomSegment(
+                                      kind: PhaseKind.work,
+                                      seconds: seg.seconds,
+                                      label: seg.label,
+                                    );
+                                    setState(() => _spec = _spec.copyWith(custom: next));
+                                  },
+                                ),
+                                ChoiceChip(
+                                  label: Text(l10n.segmentRest),
+                                  selected: seg.kind == PhaseKind.rest,
+                                  onSelected: (_) {
+                                    final next = [..._spec.custom];
+                                    next[i] = CustomSegment(
+                                      kind: PhaseKind.rest,
+                                      seconds: seg.seconds,
+                                      label: seg.label,
+                                    );
+                                    setState(() => _spec = _spec.copyWith(custom: next));
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                          const Spacer(),
                           IconButton(
                             onPressed: () {
                               final next = [..._spec.custom]..removeAt(i);

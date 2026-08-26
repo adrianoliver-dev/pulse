@@ -250,6 +250,43 @@ class PulseTheme {
         backgroundColor: p.accent,
         foregroundColor: p.background,
       ),
+      chipTheme: ChipThemeData(
+        backgroundColor: p.surfaceHigh,
+        selectedColor: p.accent,
+        disabledColor: p.surface,
+        labelStyle: TextStyle(color: p.text, fontFamily: 'Manrope', fontWeight: FontWeight.w600),
+        secondaryLabelStyle: TextStyle(color: p.background, fontFamily: 'Manrope', fontWeight: FontWeight.w600),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        side: BorderSide(color: p.hairline),
+        showCheckmark: false,
+      ),
+      dialogTheme: DialogThemeData(
+        backgroundColor: p.surface,
+        titleTextStyle: TextStyle(
+          fontFamily: 'Manrope',
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: p.text,
+        ),
+      ),
+      navigationRailTheme: NavigationRailThemeData(
+        backgroundColor: p.background,
+        indicatorColor: p.surfaceHigh,
+        selectedIconTheme: IconThemeData(color: p.accent),
+        unselectedIconTheme: IconThemeData(color: p.textMuted),
+        selectedLabelTextStyle: TextStyle(
+          color: p.accent,
+          fontWeight: FontWeight.w600,
+          fontSize: 12,
+          fontFamily: 'Manrope',
+        ),
+        unselectedLabelTextStyle: TextStyle(
+          color: p.textMuted,
+          fontSize: 12,
+          fontFamily: 'Manrope',
+        ),
+      ),
     );
   }
 }
