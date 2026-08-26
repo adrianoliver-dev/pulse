@@ -84,7 +84,7 @@ class HomeScreen extends ConsumerWidget {
                   )
                 else
                   SizedBox(
-                    height: 128,
+                    height: 144,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemCount: presets.length,
@@ -193,36 +193,50 @@ class _PresetChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final palette = context.pulse;
-    return InkWell(
-      borderRadius: BorderRadius.circular(18),
-      onTap: () => context.push('/workout', extra: spec),
-      onLongPress: () => context.push('/editor', extra: spec),
-      child: Container(
-        width: wide ? 180 : 156,
-        height: 128,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: palette.surface,
+    return SizedBox(
+      width: wide ? 188 : 168,
+      height: 136,
+      child: Material(
+        color: palette.surface,
+        borderRadius: BorderRadius.circular(18),
+        child: InkWell(
           borderRadius: BorderRadius.circular(18),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(Icons.bolt, color: palette.accent, size: 18),
-            const Spacer(),
-            Text(
-              localizedRoutineName(spec, l10n),
-              maxLines: 2,
-              style: const TextStyle(fontWeight: FontWeight.w600),
+          onTap: () => context.push('/workout', extra: spec),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(14, 10, 6, 14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.bolt, color: palette.accent, size: 18),
+                    const Spacer(),
+                    IconButton(
+                      tooltip: l10n.edit,
+                      visualDensity: VisualDensity.compact,
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                      icon: Icon(Icons.edit_outlined, size: 18, color: palette.textMuted),
+                      onPressed: () => context.push('/editor', extra: spec),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                Text(
+                  localizedRoutineName(spec, l10n),
+                  maxLines: 2,
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  routineTimingLine(spec),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(color: palette.textMuted, fontSize: 11),
+                ),
+              ],
             ),
-            const SizedBox(height: 4),
-            Text(
-              routineTimingLine(spec),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: palette.textMuted, fontSize: 11),
-            ),
-          ],
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:audio_service/audio_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -109,6 +110,21 @@ class _MusicLibraryScreenState extends ConsumerState<MusicLibraryScreen>
                       s.title.toLowerCase().contains(_query) ||
                       s.artist.toLowerCase().contains(_query))
                   .toList();
+              if (kIsWeb && songs.isEmpty) {
+                return EmptyState(
+                  icon: Icons.library_music_outlined,
+                  title: l10n.noSongs,
+                  body: l10n.webDemoHint,
+                  action: FilledButton(
+                    onPressed: () async {
+                      final files =
+                          await ref.read(deviceLibraryProvider.notifier).pickFiles();
+                      if (files.isNotEmpty) await _playSongs(files);
+                    },
+                    child: Text(l10n.pickFiles),
+                  ),
+                );
+              }
               return Column(
                 children: [
                   Padding(

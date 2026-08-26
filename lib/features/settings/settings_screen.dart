@@ -86,22 +86,23 @@ class SettingsScreen extends ConsumerWidget {
             child: Text(l10n.timerLayout, style: TextStyle(color: palette.textMuted)),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-            child: SegmentedButton<TimerLayout>(
-              showSelectedIcon: false,
-              style: const ButtonStyle(
-                visualDensity: VisualDensity.compact,
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              ),
-              segments: [
-                ButtonSegment(value: TimerLayout.giant, label: Text(l10n.layoutGiant)),
-                ButtonSegment(value: TimerLayout.ring, label: Text(l10n.layoutRing)),
-                ButtonSegment(value: TimerLayout.both, label: Text(l10n.layoutBoth)),
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final layout in TimerLayout.values)
+                  ChoiceChip(
+                    label: Text(switch (layout) {
+                      TimerLayout.giant => l10n.layoutGiant,
+                      TimerLayout.ring => l10n.layoutRing,
+                      TimerLayout.both => l10n.layoutBoth,
+                    }),
+                    selected: settings.timerLayout == layout,
+                    onSelected: (_) =>
+                        ref.read(settingsProvider.notifier).setTimerLayout(layout),
+                  ),
               ],
-              selected: {settings.timerLayout},
-              onSelectionChanged: (set) {
-                ref.read(settingsProvider.notifier).setTimerLayout(set.first);
-              },
             ),
           ),
           const Divider(),

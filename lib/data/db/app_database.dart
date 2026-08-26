@@ -59,8 +59,19 @@ class WorkoutHistory extends Table {
 
 @DriftDatabase(tables: [Routines, Playlists, PlaylistTracks, WorkoutHistory])
 class AppDatabase extends _$AppDatabase {
-  AppDatabase([QueryExecutor? executor])
-      : super(executor ?? driftDatabase(name: 'pulse'));
+  AppDatabase([QueryExecutor? executor]) : super(executor ?? _open());
+
+  static QueryExecutor _open() {
+    return driftDatabase(
+      name: 'pulse',
+      // Required on Flutter web. Native platforms ignore these URIs.
+      // Absolute paths so path-URL routes like /settings still load WASM.
+      web: DriftWebOptions(
+        sqlite3Wasm: Uri.parse('/sqlite3.wasm'),
+        driftWorker: Uri.parse('/drift_worker.js'),
+      ),
+    );
+  }
 
   @override
   int get schemaVersion => 1;
