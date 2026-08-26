@@ -1,21 +1,44 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/layout.dart';
+import '../../app/providers.dart';
 import '../../app/theme.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../music/now_playing_bar.dart';
 
-class ShellScreen extends StatelessWidget {
+class ShellScreen extends ConsumerStatefulWidget {
   const ShellScreen({super.key, required this.navigationShell});
 
   final StatefulNavigationShell navigationShell;
 
   @override
+  ConsumerState<ShellScreen> createState() => _ShellScreenState();
+}
+
+class _ShellScreenState extends ConsumerState<ShellScreen> {
+  static const _hintKey = 'webHintDismissed';
+  bool _hideWebHint = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _hideWebHint =
+        ref.read(sharedPreferencesProvider).getBool(_hintKey) ?? false;
+  }
+
+  Future<void> _dismissHint() async {
+    setState(() => _hideWebHint = true);
+    await ref.read(sharedPreferencesProvider).setBool(_hintKey, true);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final palette = context.pulse;
+    final navigationShell = widget.navigationShell;
     final destinations = [
       _Nav(
         icon: Icons.timer_outlined,
@@ -48,17 +71,32 @@ class ShellScreen extends StatelessWidget {
 
     final content = Column(
       children: [
-        if (kIsWeb)
+        if (kIsWeb && !_hideWebHint)
           Material(
             color: palette.surfaceHigh,
             child: SafeArea(
               bottom: false,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Text(
-                  l10n.webDemoHint,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: palette.textMuted, fontSize: 13, height: 1.3),
+                padding: const EdgeInsets.fromLTRB(12, 6, 4, 6),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        l10n.webDemoHint,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: palette.textMuted,
+                          fontSize: 13,
+                          height: 1.3,
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      tooltip: l10n.dismissHint,
+                      onPressed: _dismissHint,
+                      icon: const Icon(Icons.close, size: 18),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -89,7 +127,8 @@ class ShellScreen extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 fontSize: 12,
               ),
-              unselectedLabelTextStyle: TextStyle(color: palette.textMuted, fontSize: 12),
+              unselectedLabelTextStyle:
+                  TextStyle(color: palette.textMuted, fontSize: 12),
               destinations: [
                 for (final d in destinations)
                   NavigationRailDestination(

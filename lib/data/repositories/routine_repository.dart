@@ -128,6 +128,16 @@ class RoutineRepository {
 
   static String newId() => _uuid.v4();
 
+  /// Presets are templates. Saving one stores a separate user routine.
+  static RoutineSpec asUserRoutine(RoutineSpec spec, String name) {
+    return spec.copyWith(
+      id: newId(),
+      isPreset: false,
+      name: name,
+      updatedAt: DateTime.now(),
+    );
+  }
+
   static RoutineSpec toSpec(Routine row) {
     final custom = <CustomSegment>[];
     final raw = row.customSegmentsJson;

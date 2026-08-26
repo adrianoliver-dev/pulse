@@ -155,5 +155,18 @@
   "webDemoHint": "Demo web — la biblioteca de música y el control en pantalla bloqueada van en Android. Aquí puedes probar el timer, los temas y los formatos.",
   "emptyRoutinesBody": "Arma trabajo y descanso, y dale a empezar. El aspecto se cambia cuando quieras en Ajustes.",
   "tapToPause": "Toca los números para pausar",
-  "emptyHistoryBody": "Termina una sesión y aparecerá aquí."
+  "emptyHistoryBody": "Termina una sesión y aparecerá aquí.",
+  "featuredReady": "Empieza aquí",
+  "featuredLast": "Última vez",
+  "presetCopyHint": "Las plantillas no se pisan. Al guardar se crea tu versión.",
+  "savedAsCopy": "Guardado como tu rutina",
+  "nextUp": "Luego: {phase} {time}",
+  "@nextUp": {
+    "placeholders": {
+      "phase": {"type": "String"},
+      "time": {"type": "String"}
+    }
+  },
+  "dismissHint": "Cerrar",
+  "tapToStart": "Toca para empezar"
 }

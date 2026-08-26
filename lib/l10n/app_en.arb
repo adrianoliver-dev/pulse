@@ -155,5 +155,18 @@
   "webDemoHint": "Web demo — full music library and lock-screen controls live in the Android app. Timer, themes and layouts work here.",
   "emptyRoutinesBody": "Build a round of work and rest, then start. You can change the look anytime in Settings.",
   "tapToPause": "Tap the numbers to pause",
-  "emptyHistoryBody": "Finish a session and it will show up here."
+  "emptyHistoryBody": "Finish a session and it will show up here.",
+  "featuredReady": "Start here",
+  "featuredLast": "Last time",
+  "presetCopyHint": "Templates stay put. Saving creates your own version.",
+  "savedAsCopy": "Saved as your routine",
+  "nextUp": "Next: {phase} {time}",
+  "@nextUp": {
+    "placeholders": {
+      "phase": {"type": "String"},
+      "time": {"type": "String"}
+    }
+  },
+  "dismissHint": "Dismiss",
+  "tapToStart": "Tap to start"
 }

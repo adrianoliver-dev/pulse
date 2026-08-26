@@ -18,11 +18,45 @@ String routineTimingLine(RoutineSpec spec) {
 }
 
 String localizedRoutineName(RoutineSpec spec, AppLocalizations l10n) {
-  return switch (spec.id) {
+  return localizedNameForId(spec.id, spec.name, l10n);
+}
+
+String localizedNameForId(String id, String fallbackName, AppLocalizations l10n) {
+  return switch (id) {
     presetPushupsId => l10n.presetPushups,
     presetTabataId => l10n.presetTabata,
     presetHiitId => l10n.presetHiit,
     presetSprintId => l10n.presetSprint,
-    _ => spec.name.isEmpty ? l10n.untitled : spec.name,
+    _ => fallbackName.isEmpty ? l10n.untitled : fallbackName,
   };
+}
+
+const kPresetHomeOrder = [
+  presetSprintId,
+  presetTabataId,
+  presetHiitId,
+  presetPushupsId,
+];
+
+List<RoutineSpec> orderedPresets(Iterable<RoutineSpec> presets) {
+  final copy = presets.toList();
+  int rank(RoutineSpec spec) {
+    final i = kPresetHomeOrder.indexOf(spec.id);
+    return i < 0 ? 99 : i;
+  }
+
+  copy.sort((a, b) => rank(a).compareTo(rank(b)));
+  return copy;
+}
+
+RoutineSpec featuredRoutine(List<RoutineSpec> specs, String? lastId) {
+  if (lastId != null) {
+    for (final spec in specs) {
+      if (spec.id == lastId) return spec;
+    }
+  }
+  for (final spec in specs) {
+    if (spec.id == presetSprintId) return spec;
+  }
+  return specs.first;
 }

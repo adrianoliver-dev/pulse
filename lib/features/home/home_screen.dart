@@ -19,13 +19,6 @@ class HomeScreen extends ConsumerWidget {
     final palette = context.pulse;
     final routinesAsync = ref.watch(routinesProvider);
     final lastId = ref.watch(settingsProvider).lastRoutineId;
-    final sectionStyle = TextStyle(
-      fontSize: 13,
-      letterSpacing: 1.2,
-      fontWeight: FontWeight.w600,
-      color: palette.textMuted,
-    );
-    final expanded = PulseLayout.isExpanded(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -54,12 +47,16 @@ class HomeScreen extends ConsumerWidget {
             );
           }
           final specs = routines.map(RoutineRepository.toSpec).toList();
-          final featured = specs.cast<RoutineSpec?>().firstWhere(
-                (s) => s!.id == lastId,
-                orElse: () => specs.first,
-              )!;
-          final presets = specs.where((s) => s.isPreset).toList();
+          final featured = featuredRoutine(specs, lastId);
+          final presets = orderedPresets(specs.where((s) => s.isPreset));
           final custom = specs.where((s) => !s.isPreset).toList();
+          final featuredIsLast = lastId != null && featured.id == lastId;
+          final sectionStyle = TextStyle(
+            fontSize: 13,
+            letterSpacing: 1.2,
+            fontWeight: FontWeight.w600,
+            color: palette.textMuted,
+          );
 
           return PulsePage(
             child: ListView(
@@ -70,28 +67,11 @@ class HomeScreen extends ConsumerWidget {
                   style: TextStyle(color: palette.textMuted, fontSize: 16),
                 ),
                 const SizedBox(height: 24),
-                _FeaturedCard(spec: featured),
+                _FeaturedCard(spec: featured, isLastSession: featuredIsLast),
                 const SizedBox(height: 28),
                 Text(l10n.presets, style: sectionStyle),
                 const SizedBox(height: 12),
-                if (expanded)
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: [
-                      for (final spec in presets) _PresetChip(spec: spec, wide: true),
-                    ],
-                  )
-                else
-                  SizedBox(
-                    height: 144,
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: presets.length,
-                      separatorBuilder: (_, _) => const SizedBox(width: 10),
-                      itemBuilder: (context, i) => _PresetChip(spec: presets[i]),
-                    ),
-                  ),
+                _PresetGrid(presets: presets),
                 if (custom.isNotEmpty) ...[
                   const SizedBox(height: 28),
                   Text(l10n.yourRoutines, style: sectionStyle),
@@ -117,9 +97,10 @@ class HomeScreen extends ConsumerWidget {
 }
 
 class _FeaturedCard extends StatelessWidget {
-  const _FeaturedCard({required this.spec});
+  const _FeaturedCard({required this.spec, required this.isLastSession});
 
   final RoutineSpec spec;
+  final bool isLastSession;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +116,7 @@ class _FeaturedCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            l10n.lastSession,
+            isLastSession ? l10n.featuredLast : l10n.featuredReady,
             style: TextStyle(
               fontSize: 13,
               letterSpacing: 1.2,
@@ -183,58 +164,86 @@ class _FeaturedCard extends StatelessWidget {
   }
 }
 
+class _PresetGrid extends StatelessWidget {
+  const _PresetGrid({required this.presets});
+
+  final List<RoutineSpec> presets;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final twoCol = constraints.maxWidth >= 340;
+        final chipW = twoCol ? (constraints.maxWidth - 10) / 2 : constraints.maxWidth;
+        return Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            for (final spec in presets) _PresetChip(spec: spec, width: chipW),
+          ],
+        );
+      },
+    );
+  }
+}
+
 class _PresetChip extends StatelessWidget {
-  const _PresetChip({required this.spec, this.wide = false});
+  const _PresetChip({required this.spec, required this.width});
 
   final RoutineSpec spec;
-  final bool wide;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final palette = context.pulse;
+    final name = localizedRoutineName(spec, l10n);
     return SizedBox(
-      width: wide ? 188 : 168,
-      height: 136,
+      width: width,
+      height: 132,
       child: Material(
         color: palette.surface,
         borderRadius: BorderRadius.circular(18),
         child: InkWell(
           borderRadius: BorderRadius.circular(18),
           onTap: () => context.push('/workout/${spec.id}'),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(14, 10, 6, 14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.bolt, color: palette.accent, size: 18),
-                    const Spacer(),
-                    IconButton(
-                      tooltip: l10n.edit,
-                      visualDensity: VisualDensity.compact,
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
-                      icon: Icon(Icons.edit_outlined, size: 18, color: palette.textMuted),
-                      onPressed: () => context.push('/editor', extra: spec),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Text(
-                  localizedRoutineName(spec, l10n),
-                  maxLines: 2,
-                  style: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  routineTimingLine(spec),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(color: palette.textMuted, fontSize: 11),
-                ),
-              ],
+          child: Semantics(
+            button: true,
+            label: '$name. ${l10n.tapToStart}',
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(14, 10, 6, 14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.play_arrow_rounded, color: palette.accent, size: 22),
+                      const Spacer(),
+                      IconButton(
+                        tooltip: l10n.edit,
+                        visualDensity: VisualDensity.compact,
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
+                        icon: Icon(Icons.edit_outlined, size: 18, color: palette.textMuted),
+                        onPressed: () => context.push('/editor', extra: spec),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Text(
+                    name,
+                    maxLines: 2,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    routineTimingLine(spec),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: palette.textMuted, fontSize: 11),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -263,11 +272,12 @@ class _RoutineTile extends StatelessWidget {
           style: TextStyle(color: palette.textMuted),
         ),
         trailing: IconButton(
-          tooltip: l10n.start,
-          icon: Icon(Icons.play_arrow_rounded, color: palette.accent),
-          onPressed: () => context.push('/workout/${spec.id}'),
+          tooltip: l10n.edit,
+          icon: Icon(Icons.edit_outlined, color: palette.textMuted),
+          onPressed: () => context.push('/editor', extra: spec),
         ),
-        onTap: () => context.push('/editor', extra: spec),
+        leading: Icon(Icons.play_arrow_rounded, color: palette.accent),
+        onTap: () => context.push('/workout/${spec.id}'),
       ),
     );
   }

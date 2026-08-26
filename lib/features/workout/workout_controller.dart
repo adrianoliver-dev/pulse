@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
@@ -116,7 +117,10 @@ class WorkoutController extends Notifier<WorkoutViewState> {
           ),
         )
         .toList();
-    await handler.loadQueue(items, autoplay: false);
+    await handler.loadQueue(
+      items,
+      autoplay: ref.read(settingsProvider).musicBehavior != MusicBehavior.off,
+    );
   }
 
   Future<void> _onTick({bool forcePhase = false}) async {
@@ -198,15 +202,21 @@ class WorkoutController extends Notifier<WorkoutViewState> {
     }
 
     if (now.millisecond < 120 || forcePhase) {
+      final lang = (settings.localeCode ??
+              WidgetsBinding.instance.platformDispatcher.locale.languageCode)
+          .toLowerCase();
+      final es = lang.startsWith('es');
       final phaseLabel = switch (snap.phase) {
-        PhaseKind.prepare => 'Prepare',
-        PhaseKind.work => 'Work',
-        PhaseKind.rest => 'Rest',
-        PhaseKind.done => 'Done',
+        PhaseKind.prepare => es ? 'Preparación' : 'Prepare',
+        PhaseKind.work => es ? 'Trabajo' : 'Work',
+        PhaseKind.rest => es ? 'Descanso' : 'Rest',
+        PhaseKind.done => es ? 'Listo' : 'Done',
       };
       handler.setTimerDisplay(
         title: '$phaseLabel  ${TimeFormat.workoutClock(snap.remaining, snap.segmentDuration)}',
-        subtitle: 'Round ${snap.roundIndex}/${snap.roundCount}',
+        subtitle: es
+            ? 'Ronda ${snap.roundIndex}/${snap.roundCount}'
+            : 'Round ${snap.roundIndex}/${snap.roundCount}',
       );
     }
   }

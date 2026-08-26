@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -155,8 +154,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get permissionMusicTitle => 'Tu música se queda en el teléfono';
 
   @override
-  String get permissionMusicBody =>
-      'Pulse reproduce archivos que ya descargaste. La música sigue en trabajo y descanso. Los beeps suenan encima. Nada se sube a internet.';
+  String get permissionMusicBody => 'Pulse reproduce archivos que ya descargaste. La música sigue en trabajo y descanso. Los beeps suenan encima. Nada se sube a internet.';
 
   @override
   String get allowAccess => 'Permitir acceso';
@@ -210,8 +208,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get privacy => 'Privacidad';
 
   @override
-  String get privacyBody =>
-      'Pulse guarda rutinas, historial y playlists solo en este dispositivo. Sin cuenta, sin anuncios, sin rastreo.';
+  String get privacyBody => 'Pulse guarda rutinas, historial y playlists solo en este dispositivo. Sin cuenta, sin anuncios, sin rastreo.';
 
   @override
   String get finishedTitle => 'Sesión completa';
@@ -255,8 +252,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get artistUnknown => 'Artista desconocido';
 
   @override
-  String get workoutMusicHint =>
-      'La música no se detiene. Los beeps suenan encima.';
+  String get workoutMusicHint => 'La música no se detiene. Los beeps suenan encima.';
 
   @override
   String get cannotStart => 'Añade al menos un intervalo de trabajo';
@@ -312,8 +308,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get previous => 'Anterior';
 
   @override
-  String get aboutPulse =>
-      'Pulse es un temporizador de intervalos para leer de lejos: números grandes, un tema que eliges, y música que no se corta cuando suena el beep.';
+  String get aboutPulse => 'Pulse es un temporizador de intervalos para leer de lejos: números grandes, un tema que eliges, y música que no se corta cuando suena el beep.';
 
   @override
   String get appearance => 'Apariencia';
@@ -346,8 +341,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get themeTierra => 'Tierra';
 
   @override
-  String get musicPolicyHint =>
-      'Los beeps suenan encima de la playlist. En el descanso puedes pausar, bajar un poco o dejarla igual.';
+  String get musicPolicyHint => 'Los beeps suenan encima de la playlist. En el descanso puedes pausar, bajar un poco o dejarla igual.';
 
   @override
   String sessionSummary(int rounds, String work, String rest) {
@@ -371,16 +365,37 @@ class AppLocalizationsEs extends AppLocalizations {
   String get edit => 'Editar';
 
   @override
-  String get webDemoHint =>
-      'Demo web — la biblioteca de música y el control en pantalla bloqueada van en Android. Aquí puedes probar el timer, los temas y los formatos.';
+  String get webDemoHint => 'Demo web — la biblioteca de música y el control en pantalla bloqueada van en Android. Aquí puedes probar el timer, los temas y los formatos.';
 
   @override
-  String get emptyRoutinesBody =>
-      'Arma trabajo y descanso, y dale a empezar. El aspecto se cambia cuando quieras en Ajustes.';
+  String get emptyRoutinesBody => 'Arma trabajo y descanso, y dale a empezar. El aspecto se cambia cuando quieras en Ajustes.';
 
   @override
   String get tapToPause => 'Toca los números para pausar';
 
   @override
   String get emptyHistoryBody => 'Termina una sesión y aparecerá aquí.';
+
+  @override
+  String get featuredReady => 'Empieza aquí';
+
+  @override
+  String get featuredLast => 'Última vez';
+
+  @override
+  String get presetCopyHint => 'Las plantillas no se pisan. Al guardar se crea tu versión.';
+
+  @override
+  String get savedAsCopy => 'Guardado como tu rutina';
+
+  @override
+  String nextUp(String phase, String time) {
+    return 'Luego: $phase $time';
+  }
+
+  @override
+  String get dismissHint => 'Cerrar';
+
+  @override
+  String get tapToStart => 'Toca para empezar';
 }

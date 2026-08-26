@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -155,8 +154,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get permissionMusicTitle => 'Your music stays on this phone';
 
   @override
-  String get permissionMusicBody =>
-      'Pulse plays files you already downloaded. Music keeps going through work and rest. Beeps sit on top — nothing is uploaded.';
+  String get permissionMusicBody => 'Pulse plays files you already downloaded. Music keeps going through work and rest. Beeps sit on top — nothing is uploaded.';
 
   @override
   String get allowAccess => 'Allow access';
@@ -210,8 +208,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get privacy => 'Privacy';
 
   @override
-  String get privacyBody =>
-      'Pulse stores routines, history and playlists only on this device. No account, no ads, no tracking.';
+  String get privacyBody => 'Pulse stores routines, history and playlists only on this device. No account, no ads, no tracking.';
 
   @override
   String get finishedTitle => 'Session complete';
@@ -311,8 +308,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get previous => 'Previous';
 
   @override
-  String get aboutPulse =>
-      'Pulse is an interval timer you can read from across the room: giant digits, a theme you pick, and music that never stops for a beep.';
+  String get aboutPulse => 'Pulse is an interval timer you can read from across the room: giant digits, a theme you pick, and music that never stops for a beep.';
 
   @override
   String get appearance => 'Look';
@@ -345,8 +341,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get themeTierra => 'Tierra';
 
   @override
-  String get musicPolicyHint =>
-      'Beeps play over your playlist. On rest you can pause, dip the volume a little, or leave it.';
+  String get musicPolicyHint => 'Beeps play over your playlist. On rest you can pause, dip the volume a little, or leave it.';
 
   @override
   String sessionSummary(int rounds, String work, String rest) {
@@ -370,16 +365,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get edit => 'Edit';
 
   @override
-  String get webDemoHint =>
-      'Web demo — full music library and lock-screen controls live in the Android app. Timer, themes and layouts work here.';
+  String get webDemoHint => 'Web demo — full music library and lock-screen controls live in the Android app. Timer, themes and layouts work here.';
 
   @override
-  String get emptyRoutinesBody =>
-      'Build a round of work and rest, then start. You can change the look anytime in Settings.';
+  String get emptyRoutinesBody => 'Build a round of work and rest, then start. You can change the look anytime in Settings.';
 
   @override
   String get tapToPause => 'Tap the numbers to pause';
 
   @override
   String get emptyHistoryBody => 'Finish a session and it will show up here.';
+
+  @override
+  String get featuredReady => 'Start here';
+
+  @override
+  String get featuredLast => 'Last time';
+
+  @override
+  String get presetCopyHint => 'Templates stay put. Saving creates your own version.';
+
+  @override
+  String get savedAsCopy => 'Saved as your routine';
+
+  @override
+  String nextUp(String phase, String time) {
+    return 'Next: $phase $time';
+  }
+
+  @override
+  String get dismissHint => 'Dismiss';
+
+  @override
+  String get tapToStart => 'Tap to start';
 }

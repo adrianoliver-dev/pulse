@@ -27,6 +27,9 @@ class _EditorScreenState extends ConsumerState<EditorScreen> {
   late RoutineSpec _spec;
   late final TextEditingController _name;
   late final TextEditingController _exercise;
+  bool _namedPreset = false;
+
+  bool get _editingPreset => widget.initial?.isPreset ?? false;
 
   @override
   void initState() {
@@ -46,6 +49,15 @@ class _EditorScreenState extends ConsumerState<EditorScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_namedPreset && _editingPreset && widget.initial != null && _name.text.isEmpty) {
+      _name.text = localizedRoutineName(widget.initial!, AppLocalizations.of(context));
+      _namedPreset = true;
+    }
+  }
+
+  @override
   void dispose() {
     _name.dispose();
     _exercise.dispose();
@@ -59,6 +71,9 @@ class _EditorScreenState extends ConsumerState<EditorScreen> {
       exerciseLabel: _exercise.text.trim().isEmpty ? null : _exercise.text.trim(),
       updatedAt: DateTime.now(),
     );
+    if (_editingPreset) {
+      spec = RoutineRepository.asUserRoutine(spec, spec.name);
+    }
     if (spec.mode == WorkoutMode.custom &&
         spec.custom.where((c) => c.kind == PhaseKind.work && c.seconds > 0).isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.cannotStart)));
@@ -69,7 +84,9 @@ class _EditorScreenState extends ConsumerState<EditorScreen> {
     if (start) {
       context.pushReplacement('/workout/${spec.id}');
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.saved)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(_editingPreset ? l10n.savedAsCopy : l10n.saved)),
+      );
       context.pop();
     }
   }
@@ -126,6 +143,13 @@ class _EditorScreenState extends ConsumerState<EditorScreen> {
               hintText: l10n.exerciseHint,
             ),
           ),
+          if (_editingPreset) ...[
+            const SizedBox(height: 12),
+            Text(
+              l10n.presetCopyHint,
+              style: TextStyle(color: context.pulse.textMuted, height: 1.35),
+            ),
+          ],
           const SizedBox(height: 20),
           Text(l10n.modeLabel, style: TextStyle(color: context.pulse.textMuted)),
           const SizedBox(height: 8),

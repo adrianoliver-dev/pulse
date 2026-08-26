@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -95,6 +96,13 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
   @override
   void initState() {
     super.initState();
+    if (!kIsWeb) {
+      SystemChrome.setPreferredOrientations(const [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(workoutControllerProvider.notifier).start(widget.spec);
       _focus.requestFocus();
@@ -103,6 +111,11 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
 
   @override
   void dispose() {
+    if (!kIsWeb) {
+      SystemChrome.setPreferredOrientations(const [
+        DeviceOrientation.portraitUp,
+      ]);
+    }
     _focus.dispose();
     super.dispose();
   }
@@ -124,6 +137,22 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
       return KeyEventResult.handled;
     }
     return KeyEventResult.ignored;
+  }
+
+  String? _nextUp(WorkoutViewState view, AppLocalizations l10n) {
+    final plan = view.plan;
+    final snap = view.snapshot;
+    if (plan == null || snap.isFinished) return null;
+    final next = snap.segmentIndex + 1;
+    if (next < 0 || next >= plan.segments.length) return null;
+    final seg = plan.segments[next];
+    final phase = switch (seg.kind) {
+      PhaseKind.work => l10n.work,
+      PhaseKind.rest => l10n.rest,
+      PhaseKind.prepare => l10n.prepare,
+      PhaseKind.done => l10n.done,
+    };
+    return l10n.nextUp(phase, TimeFormat.pretty(seg.duration));
   }
 
   @override
@@ -158,6 +187,7 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
       ),
     );
 
+    final nextLine = _nextUp(view, l10n);
     final meta = Column(
       children: [
         Text(
@@ -169,6 +199,13 @@ class _WorkoutScreenState extends ConsumerState<WorkoutScreen> {
           l10n.totalRemaining(TimeFormat.mmss(snap.totalRemaining)),
           style: TextStyle(color: palette.textMuted),
         ),
+        if (nextLine != null) ...[
+          const SizedBox(height: 6),
+          Text(
+            nextLine,
+            style: TextStyle(color: palette.textMuted, fontSize: 13),
+          ),
+        ],
         const SizedBox(height: 8),
         Text(
           l10n.tapToPause,

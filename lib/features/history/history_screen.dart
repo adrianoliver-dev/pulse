@@ -6,6 +6,7 @@ import '../../app/providers.dart';
 import '../../app/theme.dart';
 import '../../core/format.dart';
 import '../../l10n/generated/app_localizations.dart';
+import '../library/routine_labels.dart';
 
 class HistoryScreen extends ConsumerWidget {
   const HistoryScreen({super.key});
@@ -36,7 +37,9 @@ class HistoryScreen extends ConsumerWidget {
               itemBuilder: (context, i) {
                 final row = rows[i];
                 return ListTile(
-                  title: Text(row.routineName),
+                  title: Text(
+                    localizedNameForId(row.routineId, row.routineName, l10n),
+                  ),
                   subtitle: Text(
                     '${row.completed ? l10n.historyCompleted : l10n.historyStopped}  ·  ${TimeFormat.pretty(Duration(seconds: row.durationSeconds))}',
                     style: TextStyle(color: context.pulse.textMuted),
