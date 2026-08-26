@@ -1,10 +1,10 @@
-# Pulse: Interval Timer
+# Lejos
 
-Temporizador de intervalos para leer de lejos: números gigantes, temas que eliges, y música que no se corta cuando suena el beep.
+Temporizador de intervalos para leer al otro lado del cuarto: números gigantes, temas que eliges, y música que no se corta cuando suena el beep.
 
-- Package: `com.adrianoliver.pulse`
-- Marca: Pulse
-- Demo web (Vercel): se publica desde este repo
+- Marca visible: **Lejos**
+- Package: `com.adrianoliver.pulse` (no cambia; así no se pierde el sideload)
+- Demo web: https://pulse-adrianoliver-dev.vercel.app
 - App: Android primero
 
 ## Requisitos

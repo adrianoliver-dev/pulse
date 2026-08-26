@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -9,10 +10,10 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Pulse';
+  String get appTitle => 'Lejos';
 
   @override
-  String get tagline => 'Focus on the work.';
+  String get tagline => 'Read it from across the room.';
 
   @override
   String get navHome => 'Train';
@@ -154,7 +155,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get permissionMusicTitle => 'Your music stays on this phone';
 
   @override
-  String get permissionMusicBody => 'Pulse plays files you already downloaded. Music keeps going through work and rest. Beeps sit on top — nothing is uploaded.';
+  String get permissionMusicBody =>
+      'Lejos plays files already on this phone and hides WhatsApp, ringtones and SFX. Beeps sit on top of the track. Nothing is uploaded.';
 
   @override
   String get allowAccess => 'Allow access';
@@ -208,7 +210,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get privacy => 'Privacy';
 
   @override
-  String get privacyBody => 'Pulse stores routines, history and playlists only on this device. No account, no ads, no tracking.';
+  String get privacyBody =>
+      'Routines, history and playlists stay on this device. No account, no ads, no tracking. The AI coach sends your text or audio and, for playlists, only titles and artists — never the files — to Google Gemini.';
 
   @override
   String get finishedTitle => 'Session complete';
@@ -308,7 +311,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get previous => 'Previous';
 
   @override
-  String get aboutPulse => 'Pulse is an interval timer you can read from across the room: giant digits, a theme you pick, and music that never stops for a beep.';
+  String get aboutPulse =>
+      'Lejos is an interval timer you can read from across the room: giant digits, a theme you pick, and music that never stops for a beep.';
 
   @override
   String get appearance => 'Look';
@@ -341,7 +345,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get themeTierra => 'Tierra';
 
   @override
-  String get musicPolicyHint => 'Beeps play over your playlist. On rest you can pause, dip the volume a little, or leave it.';
+  String get musicPolicyHint =>
+      'Beeps play over your playlist. On rest you can pause, dip the volume a little, or leave it.';
 
   @override
   String sessionSummary(int rounds, String work, String rest) {
@@ -365,10 +370,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get edit => 'Edit';
 
   @override
-  String get webDemoHint => 'Web demo — full music library and lock-screen controls live in the Android app. Timer, themes and layouts work here.';
+  String get webDemoHint =>
+      'Web demo — full music library and lock-screen controls live in the Android app. Timer, themes and layouts work here.';
 
   @override
-  String get emptyRoutinesBody => 'Build a round of work and rest, then start. You can change the look anytime in Settings.';
+  String get emptyRoutinesBody =>
+      'Build a round of work and rest, then start. You can change the look anytime in Settings.';
 
   @override
   String get tapToPause => 'Tap the numbers to pause';
@@ -383,7 +390,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get featuredLast => 'Last time';
 
   @override
-  String get presetCopyHint => 'Templates stay put. Saving creates your own version.';
+  String get presetCopyHint =>
+      'Templates stay put. Saving creates your own version.';
 
   @override
   String get savedAsCopy => 'Saved as your routine';
@@ -398,4 +406,218 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tapToStart => 'Tap to start';
+
+  @override
+  String get presetEmom => 'EMOM 50/10';
+
+  @override
+  String get presetBox => 'Boxing 3×3';
+
+  @override
+  String get presetCore => 'Core 30/15';
+
+  @override
+  String get presetWarmup => 'Warm-up 20/10';
+
+  @override
+  String get presetLongHiit => 'HIIT 45/15';
+
+  @override
+  String get presetRun => 'Run 90/30';
+
+  @override
+  String get presetStrength => 'Strength 45/90';
+
+  @override
+  String get presetPyramid => 'Pyramid';
+
+  @override
+  String get presetStretch => 'Stretch 45/15';
+
+  @override
+  String get onboardingSkip => 'Skip';
+
+  @override
+  String get onboardingNext => 'Next';
+
+  @override
+  String get onboardingStart => 'Start';
+
+  @override
+  String get onboarding1Title => 'Read it from across the room.';
+
+  @override
+  String get onboarding1Body =>
+      'Giant digits, an optional ring, a theme you pick. Tap the clock to pause.';
+
+  @override
+  String get onboarding2Title => 'Music never stops for a beep.';
+
+  @override
+  String get onboarding2Body =>
+      'Play files already on your phone. Cues sit on top. Nothing is uploaded.';
+
+  @override
+  String get onboarding3Title => 'Don\'t break the streak.';
+
+  @override
+  String get onboarding3Body =>
+      'One finished session a day keeps the fire. Same idea as Duolingo, for training.';
+
+  @override
+  String get onboarding4Title => 'Say it. Lejos builds it.';
+
+  @override
+  String get onboarding4Body =>
+      'Record a voice note or type: who you are, your week, or just today. Lejos builds the routine and a playlist from your music.';
+
+  @override
+  String get streakLabel => 'Streak';
+
+  @override
+  String streakDays(int count) {
+    return '$count days';
+  }
+
+  @override
+  String streakLongest(int count) {
+    return 'Best $count';
+  }
+
+  @override
+  String get streakTodayDone => 'Today counts';
+
+  @override
+  String get streakTodayTodo => 'Train today to keep it';
+
+  @override
+  String get streakStartToday => 'Start today';
+
+  @override
+  String streakWeek(int count) {
+    return '$count this week';
+  }
+
+  @override
+  String streakMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get coachTitle => 'AI coach';
+
+  @override
+  String get coachSubtitle =>
+      'Tell it your day or your week. It can also build playlists from this phone.';
+
+  @override
+  String get coachToday => 'Just today';
+
+  @override
+  String get coachWeek => 'The week';
+
+  @override
+  String get coachPlaylist => 'Playlist';
+
+  @override
+  String get coachHint => 'e.g. night sessions, 20 min HIIT today';
+
+  @override
+  String get coachHintPlaylist =>
+      'e.g. make a rock mix, or only Cuarteto de Nos';
+
+  @override
+  String get coachRecord => 'Record';
+
+  @override
+  String get coachStopRecord => 'Stop';
+
+  @override
+  String get coachGenerate => 'Build';
+
+  @override
+  String get coachSaveAll => 'Save all';
+
+  @override
+  String get coachSaveOne => 'Save';
+
+  @override
+  String get coachStartThis => 'Start';
+
+  @override
+  String get coachEmpty => 'No plan yet. Type or record, then build.';
+
+  @override
+  String get coachNeedKey =>
+      'The coach needs a Gemini key. Paste it in Settings, or ask whoever sent you the app.';
+
+  @override
+  String get coachNeedMusic => 'Allow access to your music first.';
+
+  @override
+  String get coachSavedRoutines => 'Routines saved';
+
+  @override
+  String get coachSavedPlaylist => 'Playlist ready';
+
+  @override
+  String get coachError =>
+      'Could not build that. Try again or shorten the request.';
+
+  @override
+  String get coachVoiceHint =>
+      'Say who you are and what you want today or this week.';
+
+  @override
+  String get nowPlayingQueue => 'Up next';
+
+  @override
+  String get repeatOne => 'Repeat track';
+
+  @override
+  String get repeatAll => 'Repeat queue';
+
+  @override
+  String get repeatOff => 'Repeat off';
+
+  @override
+  String get shuffleOn => 'Shuffle';
+
+  @override
+  String get aiMix => 'Build with AI';
+
+  @override
+  String get filterShort => 'Music only';
+
+  @override
+  String get showAllSongs => 'Everything';
+
+  @override
+  String hiddenJunk(int hidden) {
+    return '$hidden clips hidden (WhatsApp, SFX, ringtones)';
+  }
+
+  @override
+  String get replayOnboarding => 'Replay intro';
+
+  @override
+  String get geminiKeyLabel => 'Gemini key (optional)';
+
+  @override
+  String get geminiKeyHint => 'Only if the coach is not baked into this build';
+
+  @override
+  String get coachReady => 'Coach is ready on this device';
+
+  @override
+  String get historyRepeat => 'Repeat';
+
+  @override
+  String get dayToday => 'Today';
+
+  @override
+  String get dayYesterday => 'Yesterday';
+
+  @override
+  String get seek => 'Position';
 }

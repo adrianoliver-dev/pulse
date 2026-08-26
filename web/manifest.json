@@ -1,11 +1,11 @@
 {
-    "name": "Pulse: Interval Timer",
-    "short_name": "Pulse",
+    "name": "Lejos: Interval Timer",
+    "short_name": "Lejos",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#050505",
     "theme_color": "#050505",
-    "description": "Giant-digit interval timer with local music and interchangeable themes.",
+    "description": "Interval timer you can read from across the room. Giant digits, local music, daily streak.",
     "orientation": "any",
     "prefer_related_applications": false,
     "icons": [

@@ -6,9 +6,11 @@ import '../../app/layout.dart';
 import '../../app/providers.dart';
 import '../../app/theme.dart';
 import '../../core/models/workout_plan.dart';
+import '../../core/streak.dart';
 import '../../data/repositories/routine_repository.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../library/routine_labels.dart';
+import '../streak/streak_card.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -24,6 +26,11 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(l10n.appTitle),
         actions: [
+          IconButton(
+            tooltip: l10n.coachTitle,
+            onPressed: () => context.push('/coach'),
+            icon: const Icon(Icons.auto_awesome),
+          ),
           IconButton(
             tooltip: l10n.newRoutine,
             onPressed: () => context.push('/editor'),
@@ -51,6 +58,16 @@ class HomeScreen extends ConsumerWidget {
           final presets = orderedPresets(specs.where((s) => s.isPreset));
           final custom = specs.where((s) => !s.isPreset).toList();
           final featuredIsLast = lastId != null && featured.id == lastId;
+          final historyRows = ref.watch(historyProvider).valueOrNull ?? [];
+          final streak = StreakStats.fromEvents(
+            historyRows.map(
+              (r) => StreakEvent(
+                endedAt: r.endedAt,
+                completed: r.completed,
+                durationSeconds: r.durationSeconds,
+              ),
+            ),
+          );
           final sectionStyle = TextStyle(
             fontSize: 13,
             letterSpacing: 1.2,
@@ -66,6 +83,13 @@ class HomeScreen extends ConsumerWidget {
                   l10n.tagline,
                   style: TextStyle(color: palette.textMuted, fontSize: 16),
                 ),
+                const SizedBox(height: 20),
+                StreakCard(
+                  stats: streak,
+                  onTap: () => context.go('/history'),
+                ),
+                const SizedBox(height: 12),
+                _CoachCard(),
                 const SizedBox(height: 24),
                 _FeaturedCard(spec: featured, isLastSession: featuredIsLast),
                 const SizedBox(height: 28),
@@ -91,6 +115,48 @@ class HomeScreen extends ConsumerWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class _CoachCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final palette = context.pulse;
+    return Material(
+      color: palette.surface,
+      borderRadius: BorderRadius.circular(20),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: () => context.push('/coach'),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
+          child: Row(
+            children: [
+              Icon(Icons.auto_awesome, color: palette.accent),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.coachTitle,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      l10n.coachSubtitle,
+                      style: TextStyle(color: palette.textMuted, fontSize: 13),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.chevron_right, color: palette.textMuted),
+            ],
+          ),
+        ),
       ),
     );
   }

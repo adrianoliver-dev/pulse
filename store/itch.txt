@@ -1,0 +1,51 @@
+Lejos — itch.io (página pública)
+
+URL (se puede dejar): https://adriver.itch.io/pulse
+Título: Lejos
+Short description / tagline: Se lee de lejos.
+Classification: Game → keep "Tools" / "Physical games" si itch lo pide. Kind: downloadable + HTML if available.
+
+=== Edit theme ===
+BG:     #050505
+BG 2:   #121212
+Text:   #F6F1E4
+Link:   #E8A317
+Font:   Lato
+Size:   Large
+Banner: store/itch-banner.png
+Cover:  store/itch-cover.png
+Fondo:  store/itch-bg.png
+Screenshots (3–5): store/screenshots/01-home.png … 05-coach.png
+
+=== Description (pegar en el editor) ===
+
+Lejos es un temporizador de intervalos para leer al otro lado del cuarto.
+
+Números gigantes. Un anillo que se vacía. Un beep que se sienta ENCIMA de tu música, sin pausar Spotify, YouTube ni el altavoz del gym.
+
+No es un clon más de "Pulse Timer". El nombre es la función: si no se lee de lejos, no sirve.
+
+Esta build (1.1)
+
+• Intro corta la primera vez
+• Racha diaria (días seguidos, tipo Duolingo)
+• Más plantillas: 10×5/10, Tabata, HIIT, EMOM, boxeo, core, pirámide…
+• Historial por día, con repetir
+• Reproductor: barra de progreso, aleatorio, repetir, cola
+• Filtro "Solo música": esconde WhatsApp, tonos y SFX
+• Coach IA: texto (o audio en Android) → rutina + playlist de TUS archivos
+
+Android (sideload)
+El APK está firmado para instalar fuera de Play. En el teléfono: permitir orígenes desconocidos → instalar.
+
+Demo web
+https://pulse-adrianoliver-dev.vercel.app
+En el navegador pruebas timer, temas y formatos. La biblioteca del teléfono y el control en pantalla bloqueada van en Android.
+
+Música
+Lejos NO descarga canciones ni abre catálogos pirata. Reproduce lo que ya está en el teléfono y esconde el ruido (WhatsApp, alarmas, efectos). Si quieres un Spotify-like, eso es otro proyecto, con APIs legales.
+
+=== Files ===
+APK: dist/Pulse-1.1.0.apk
+Package id (no cambia): com.adrianoliver.pulse
+Nombre visible: Lejos

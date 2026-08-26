@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
-  "appTitle": "Pulse",
-  "tagline": "Focus on the work.",
+  "appTitle": "Lejos",
+  "tagline": "Read it from across the room.",
   "navHome": "Train",
   "navMusic": "Music",
   "navHistory": "History",
@@ -58,7 +58,7 @@
   "songs": "Songs",
   "playlists": "Playlists",
   "permissionMusicTitle": "Your music stays on this phone",
-  "permissionMusicBody": "Pulse plays files you already downloaded. Music keeps going through work and rest. Beeps sit on top — nothing is uploaded.",
+  "permissionMusicBody": "Lejos plays files already on this phone and hides WhatsApp, ringtones and SFX. Beeps sit on top of the track. Nothing is uploaded.",
   "allowAccess": "Allow access",
   "pickFiles": "Add files",
   "noSongs": "No songs found on this device.",
@@ -76,7 +76,7 @@
   "musicKeep": "Keep playing",
   "musicOff": "Off",
   "privacy": "Privacy",
-  "privacyBody": "Pulse stores routines, history and playlists only on this device. No account, no ads, no tracking.",
+  "privacyBody": "Routines, history and playlists stay on this device. No account, no ads, no tracking. The AI coach sends your text or audio and, for playlists, only titles and artists — never the files — to Google Gemini.",
   "finishedTitle": "Session complete",
   "finishedBody": "{time} of focused work",
   "@finishedBody": {
@@ -118,7 +118,7 @@
   "repeat": "Repeat",
   "next": "Next",
   "previous": "Previous",
-  "aboutPulse": "Pulse is an interval timer you can read from across the room: giant digits, a theme you pick, and music that never stops for a beep.",
+  "aboutPulse": "Lejos is an interval timer you can read from across the room: giant digits, a theme you pick, and music that never stops for a beep.",
   "appearance": "Look",
   "themeLabel": "Theme",
   "timerLayout": "Timer layout",
@@ -168,5 +168,95 @@
     }
   },
   "dismissHint": "Dismiss",
-  "tapToStart": "Tap to start"
+  "tapToStart": "Tap to start",
+  "presetEmom": "EMOM 50/10",
+  "presetBox": "Boxing 3×3",
+  "presetCore": "Core 30/15",
+  "presetWarmup": "Warm-up 20/10",
+  "presetLongHiit": "HIIT 45/15",
+  "presetRun": "Run 90/30",
+  "presetStrength": "Strength 45/90",
+  "presetPyramid": "Pyramid",
+  "presetStretch": "Stretch 45/15",
+  "onboardingSkip": "Skip",
+  "onboardingNext": "Next",
+  "onboardingStart": "Start",
+  "onboarding1Title": "Read it from across the room.",
+  "onboarding1Body": "Giant digits, an optional ring, a theme you pick. Tap the clock to pause.",
+  "onboarding2Title": "Music never stops for a beep.",
+  "onboarding2Body": "Play files already on your phone. Cues sit on top. Nothing is uploaded.",
+  "onboarding3Title": "Don't break the streak.",
+  "onboarding3Body": "One finished session a day keeps the fire. Same idea as Duolingo, for training.",
+  "onboarding4Title": "Say it. Lejos builds it.",
+  "onboarding4Body": "Record a voice note or type: who you are, your week, or just today. Lejos builds the routine and a playlist from your music.",
+  "streakLabel": "Streak",
+  "streakDays": "{count} days",
+  "@streakDays": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "streakLongest": "Best {count}",
+  "@streakLongest": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "streakTodayDone": "Today counts",
+  "streakTodayTodo": "Train today to keep it",
+  "streakStartToday": "Start today",
+  "streakWeek": "{count} this week",
+  "@streakWeek": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "streakMinutes": "{minutes} min",
+  "@streakMinutes": {
+    "placeholders": {
+      "minutes": {"type": "int"}
+    }
+  },
+  "coachTitle": "AI coach",
+  "coachSubtitle": "Tell it your day or your week. It can also build playlists from this phone.",
+  "coachToday": "Just today",
+  "coachWeek": "The week",
+  "coachPlaylist": "Playlist",
+  "coachHint": "e.g. night sessions, 20 min HIIT today",
+  "coachHintPlaylist": "e.g. make a rock mix, or only Cuarteto de Nos",
+  "coachRecord": "Record",
+  "coachStopRecord": "Stop",
+  "coachGenerate": "Build",
+  "coachSaveAll": "Save all",
+  "coachSaveOne": "Save",
+  "coachStartThis": "Start",
+  "coachEmpty": "No plan yet. Type or record, then build.",
+  "coachNeedKey": "The coach needs a Gemini key. Paste it in Settings, or ask whoever sent you the app.",
+  "coachNeedMusic": "Allow access to your music first.",
+  "coachSavedRoutines": "Routines saved",
+  "coachSavedPlaylist": "Playlist ready",
+  "coachError": "Could not build that. Try again or shorten the request.",
+  "coachVoiceHint": "Say who you are and what you want today or this week.",
+  "nowPlayingQueue": "Up next",
+  "repeatOne": "Repeat track",
+  "repeatAll": "Repeat queue",
+  "repeatOff": "Repeat off",
+  "shuffleOn": "Shuffle",
+  "aiMix": "Build with AI",
+  "filterShort": "Music only",
+  "showAllSongs": "Everything",
+  "hiddenJunk": "{hidden} clips hidden (WhatsApp, SFX, ringtones)",
+  "@hiddenJunk": {
+    "placeholders": {
+      "hidden": {"type": "int"}
+    }
+  },
+  "replayOnboarding": "Replay intro",
+  "geminiKeyLabel": "Gemini key (optional)",
+  "geminiKeyHint": "Only if the coach is not baked into this build",
+  "coachReady": "Coach is ready on this device",
+  "historyRepeat": "Repeat",
+  "dayToday": "Today",
+  "dayYesterday": "Yesterday",
+  "seek": "Position"
 }

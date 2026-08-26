@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/layout.dart';
 import '../../app/providers.dart';
 import '../../app/theme.dart';
+import '../../core/format.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'device_library.dart';
 
@@ -22,6 +23,7 @@ class _MusicLibraryScreenState extends ConsumerState<MusicLibraryScreen>
   late final TabController _tabs;
   final _search = TextEditingController();
   String _query = '';
+  bool _hideShort = true;
 
   @override
   void initState() {
@@ -37,19 +39,27 @@ class _MusicLibraryScreenState extends ConsumerState<MusicLibraryScreen>
     super.dispose();
   }
 
-  Future<void> _playSongs(List<DeviceSong> songs, {int index = 0}) async {
+  Future<void> _playSongs(
+    List<DeviceSong> songs, {
+    int index = 0,
+    bool shuffle = false,
+  }) async {
     final items = songs
         .map(
           (s) => MediaItem(
             id: s.id,
             title: s.title,
-            artist: s.artist.isEmpty ? 'Pulse' : s.artist,
+            artist: s.artist.isEmpty ? 'Lejos' : s.artist,
             duration: Duration(milliseconds: s.durationMs),
             extras: {'uri': s.uri},
           ),
         )
         .toList();
-    await ref.read(audioHandlerProvider).loadQueue(items, index: index, autoplay: true);
+    final handler = ref.read(audioHandlerProvider);
+    await handler.loadQueue(items, index: index, autoplay: true);
+    await handler.setShuffleMode(
+      shuffle ? AudioServiceShuffleMode.all : AudioServiceShuffleMode.none,
+    );
   }
 
   @override
@@ -104,12 +114,18 @@ class _MusicLibraryScreenState extends ConsumerState<MusicLibraryScreen>
                   ),
                 );
               }
-              final songs = data.songs
-                  .where((s) =>
-                      _query.isEmpty ||
-                      s.title.toLowerCase().contains(_query) ||
-                      s.artist.toLowerCase().contains(_query))
-                  .toList();
+              final filtered = data.songs.where((s) {
+                final matches = _query.isEmpty ||
+                    s.title.toLowerCase().contains(_query) ||
+                    s.artist.toLowerCase().contains(_query);
+                if (!matches) return false;
+                if (_hideShort && !s.isLikelyMusic) return false;
+                return true;
+              }).toList();
+              final songs = filtered;
+              final hidden = _hideShort
+                  ? data.songs.where((s) => !s.isLikelyMusic).length
+                  : 0;
               if (kIsWeb && songs.isEmpty) {
                 return EmptyState(
                   icon: Icons.library_music_outlined,
@@ -150,6 +166,21 @@ class _MusicLibraryScreenState extends ConsumerState<MusicLibraryScreen>
                         const SizedBox(width: 8),
                         Expanded(
                           child: OutlinedButton(
+                            onPressed: songs.isEmpty
+                                ? null
+                                : () => _playSongs(songs, shuffle: true),
+                            child: Text(l10n.shuffle),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
                             onPressed: () async {
                               final files = await ref
                                   .read(deviceLibraryProvider.notifier)
@@ -159,9 +190,28 @@ class _MusicLibraryScreenState extends ConsumerState<MusicLibraryScreen>
                             child: Text(l10n.pickFiles),
                           ),
                         ),
+                        const SizedBox(width: 8),
+                        FilterChip(
+                          label: Text(
+                            _hideShort ? l10n.filterShort : l10n.showAllSongs,
+                          ),
+                          selected: _hideShort,
+                          onSelected: (v) => setState(() => _hideShort = v),
+                        ),
                       ],
                     ),
                   ),
+                  if (hidden > 0)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                      child: Text(
+                        l10n.hiddenJunk(hidden),
+                        style: TextStyle(
+                          color: context.pulse.textMuted,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
                   const SizedBox(height: 8),
                   Expanded(
                     child: songs.isEmpty
@@ -173,7 +223,15 @@ class _MusicLibraryScreenState extends ConsumerState<MusicLibraryScreen>
                               return ListTile(
                                 title: Text(song.title, maxLines: 1, overflow: TextOverflow.ellipsis),
                                 subtitle: Text(
-                                  song.artist.isEmpty ? l10n.artistUnknown : song.artist,
+                                  [
+                                    song.artist.isEmpty
+                                        ? l10n.artistUnknown
+                                        : song.artist,
+                                    if (song.durationMs > 0)
+                                      TimeFormat.mmss(
+                                        Duration(milliseconds: song.durationMs),
+                                      ),
+                                  ].join('  ·  '),
                                   style: TextStyle(color: context.pulse.textMuted),
                                 ),
                                 onTap: () => _playSongs(songs, index: i),
@@ -192,7 +250,24 @@ class _MusicLibraryScreenState extends ConsumerState<MusicLibraryScreen>
             },
           ),
           playlists.isEmpty
-              ? Center(child: Text(l10n.emptyPlaylists))
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(28),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(l10n.emptyPlaylists, textAlign: TextAlign.center),
+                        const SizedBox(height: 16),
+                        FilledButton.icon(
+                          onPressed: () =>
+                              context.push('/coach?mode=playlist'),
+                          icon: const Icon(Icons.auto_awesome),
+                          label: Text(l10n.aiMix),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               : ListView.builder(
                   itemCount: playlists.length,
                   itemBuilder: (context, i) {
@@ -200,20 +275,59 @@ class _MusicLibraryScreenState extends ConsumerState<MusicLibraryScreen>
                     return ListTile(
                       title: Text(p.name),
                       leading: Icon(Icons.queue_music, color: context.pulse.accent),
+                      trailing: IconButton(
+                        tooltip: l10n.playAll,
+                        icon: const Icon(Icons.play_arrow_rounded),
+                        onPressed: () => _playPlaylist(p.id),
+                      ),
                       onTap: () => context.push('/playlist/${p.id}'),
                     );
                   },
                 ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _createPlaylist,
-        backgroundColor: context.pulse.accent,
-        foregroundColor: context.pulse.background,
-        icon: const Icon(Icons.add),
-        label: Text(l10n.createPlaylist),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton.extended(
+            heroTag: 'pulse-ai-mix',
+            onPressed: () => context.push('/coach?mode=playlist'),
+            backgroundColor: context.pulse.surfaceHigh,
+            foregroundColor: context.pulse.accent,
+            icon: const Icon(Icons.auto_awesome),
+            label: Text(l10n.aiMix),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton.extended(
+            heroTag: 'pulse-new-playlist',
+            onPressed: _createPlaylist,
+            backgroundColor: context.pulse.accent,
+            foregroundColor: context.pulse.background,
+            icon: const Icon(Icons.add),
+            label: Text(l10n.createPlaylist),
+          ),
+        ],
       ),
     );
+  }
+
+  Future<void> _playPlaylist(String playlistId) async {
+    final tracks =
+        await ref.read(playlistRepositoryProvider).tracks(playlistId);
+    if (tracks.isEmpty) return;
+    final items = tracks
+        .map(
+          (t) => MediaItem(
+            id: t.id,
+            title: t.title,
+            artist: t.artist.isEmpty ? 'Lejos' : t.artist,
+            duration: Duration(milliseconds: t.durationMs),
+            extras: {'uri': t.uri},
+          ),
+        )
+        .toList();
+    await ref.read(audioHandlerProvider).loadQueue(items, autoplay: true);
   }
 
   Future<void> _createPlaylist() async {

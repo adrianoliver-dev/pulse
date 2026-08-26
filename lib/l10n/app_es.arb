@@ -1,7 +1,7 @@
 {
   "@@locale": "es",
-  "appTitle": "Pulse",
-  "tagline": "Enfócate en el ejercicio.",
+  "appTitle": "Lejos",
+  "tagline": "Se lee de lejos.",
   "navHome": "Entrenar",
   "navMusic": "Música",
   "navHistory": "Historial",
@@ -58,7 +58,7 @@
   "songs": "Canciones",
   "playlists": "Playlists",
   "permissionMusicTitle": "Tu música se queda en el teléfono",
-  "permissionMusicBody": "Pulse reproduce archivos que ya descargaste. La música sigue en trabajo y descanso. Los beeps suenan encima. Nada se sube a internet.",
+  "permissionMusicBody": "Lejos reproduce lo que ya está en el teléfono y esconde WhatsApp, tonos y SFX. Los beeps van encima de la canción. Nada se sube a internet.",
   "allowAccess": "Permitir acceso",
   "pickFiles": "Añadir archivos",
   "noSongs": "No hay canciones en este dispositivo.",
@@ -76,7 +76,7 @@
   "musicKeep": "Seguir sonando",
   "musicOff": "Apagada",
   "privacy": "Privacidad",
-  "privacyBody": "Pulse guarda rutinas, historial y playlists solo en este dispositivo. Sin cuenta, sin anuncios, sin rastreo.",
+  "privacyBody": "Rutinas, historial y playlists se quedan en este dispositivo. Sin cuenta, sin anuncios, sin rastreo. El coach de IA envía tu texto o audio y, si armas una playlist, solo títulos y artistas — nunca los archivos — a Google Gemini.",
   "finishedTitle": "Sesión completa",
   "finishedBody": "{time} de trabajo enfocado",
   "@finishedBody": {
@@ -118,7 +118,7 @@
   "repeat": "Repetir",
   "next": "Siguiente",
   "previous": "Anterior",
-  "aboutPulse": "Pulse es un temporizador de intervalos para leer de lejos: números grandes, un tema que eliges, y música que no se corta cuando suena el beep.",
+  "aboutPulse": "Lejos es un temporizador de intervalos para leer al otro lado del cuarto: números gigantes, un tema que eliges, y música que no se corta cuando suena el beep.",
   "appearance": "Apariencia",
   "themeLabel": "Tema",
   "timerLayout": "Formato del contador",
@@ -168,5 +168,95 @@
     }
   },
   "dismissHint": "Cerrar",
-  "tapToStart": "Toca para empezar"
+  "tapToStart": "Toca para empezar",
+  "presetEmom": "EMOM 50/10",
+  "presetBox": "Boxeo 3×3",
+  "presetCore": "Core 30/15",
+  "presetWarmup": "Calentamiento 20/10",
+  "presetLongHiit": "HIIT 45/15",
+  "presetRun": "Correr 90/30",
+  "presetStrength": "Fuerza 45/90",
+  "presetPyramid": "Pirámide",
+  "presetStretch": "Estirar 45/15",
+  "onboardingSkip": "Saltar",
+  "onboardingNext": "Siguiente",
+  "onboardingStart": "Empezar",
+  "onboarding1Title": "El reloj, lejos.",
+  "onboarding1Body": "Números grandes, anillo opcional y un tema que eliges. Toca el contador para pausar.",
+  "onboarding2Title": "La música no se corta.",
+  "onboarding2Body": "Usa lo que ya tienes en el teléfono. Los beeps suenan encima. Nada se sube a internet.",
+  "onboarding3Title": "No rompas la racha.",
+  "onboarding3Body": "Un día cuenta. Termina una sesión y el fuego sigue. Igual que en Duolingo, pero para entrenar.",
+  "onboarding4Title": "Dilo, y se arma.",
+  "onboarding4Body": "Graba un audio o escribe: quién eres, tu semana o solo el día. Lejos te arma la rutina y una playlist de tu música.",
+  "streakLabel": "Racha",
+  "streakDays": "{count} días",
+  "@streakDays": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "streakLongest": "Mejor {count}",
+  "@streakLongest": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "streakTodayDone": "Hoy ya cuenta",
+  "streakTodayTodo": "Entrena hoy y no se rompe",
+  "streakStartToday": "Empieza hoy",
+  "streakWeek": "{count} esta semana",
+  "@streakWeek": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "streakMinutes": "{minutes} min",
+  "@streakMinutes": {
+    "placeholders": {
+      "minutes": {"type": "int"}
+    }
+  },
+  "coachTitle": "Coach IA",
+  "coachSubtitle": "Dile tu día o tu semana. También arma playlists de tu teléfono.",
+  "coachToday": "Solo hoy",
+  "coachWeek": "La semana",
+  "coachPlaylist": "Playlist",
+  "coachHint": "Ej: soy Adrián, entreno de noche, quiero HIIT de 20 min hoy",
+  "coachHintPlaylist": "Ej: armame un mix de rock, o puro Cuarteto de Nos",
+  "coachRecord": "Grabar",
+  "coachStopRecord": "Parar",
+  "coachGenerate": "Armar",
+  "coachSaveAll": "Guardar todo",
+  "coachSaveOne": "Guardar",
+  "coachStartThis": "Empezar",
+  "coachEmpty": "Todavía no hay un plan. Escribe o graba y dale a armar.",
+  "coachNeedKey": "El coach necesita una clave de Gemini. Pégala en Ajustes, o pide otra al que te pasó la app.",
+  "coachNeedMusic": "Primero permite el acceso a tu música.",
+  "coachSavedRoutines": "Rutinas guardadas",
+  "coachSavedPlaylist": "Playlist lista",
+  "coachError": "No se pudo armar. Prueba de nuevo o acorta el pedido.",
+  "coachVoiceHint": "Habla: quién eres, qué quieres hoy o en la semana.",
+  "nowPlayingQueue": "En cola",
+  "repeatOne": "Repetir canción",
+  "repeatAll": "Repetir lista",
+  "repeatOff": "Sin repetir",
+  "shuffleOn": "Aleatorio",
+  "aiMix": "Armar con IA",
+  "filterShort": "Solo música",
+  "showAllSongs": "Todo el teléfono",
+  "hiddenJunk": "{hidden} audios ocultos (WhatsApp, SFX, tonos)",
+  "@hiddenJunk": {
+    "placeholders": {
+      "hidden": {"type": "int"}
+    }
+  },
+  "replayOnboarding": "Ver introducción otra vez",
+  "geminiKeyLabel": "Clave de Gemini (opcional)",
+  "geminiKeyHint": "Solo si el coach no está activo en este build",
+  "coachReady": "Coach listo en este dispositivo",
+  "historyRepeat": "Repetir",
+  "dayToday": "Hoy",
+  "dayYesterday": "Ayer",
+  "seek": "Posición"
 }

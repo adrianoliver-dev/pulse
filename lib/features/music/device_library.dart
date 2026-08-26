@@ -11,6 +11,7 @@ class DeviceSong {
     required this.artist,
     required this.uri,
     required this.durationMs,
+    this.album = '',
   });
 
   final String id;
@@ -18,6 +19,53 @@ class DeviceSong {
   final String artist;
   final String uri;
   final int durationMs;
+  final String album;
+
+  bool get isLikelyMusic {
+    final blob = '$title $artist $album $uri'.toLowerCase();
+    const junk = [
+      'whatsapp',
+      'telegram',
+      'recording',
+      'grabación',
+      'grabacion',
+      'voice note',
+      'nota de voz',
+      'audionota',
+      'audio notes',
+      'voice messages',
+      'call recording',
+      'llamada',
+      'ringtone',
+      'ringtones',
+      'notification',
+      'notificaciones',
+      'alarm',
+      'alarms',
+      'alarma',
+      'sound effect',
+      'soundeffects',
+      'sfx',
+      'ui sound',
+      'tts',
+      'samsung',
+      'miui',
+      'pixel sounds',
+      'recordings',
+      'bluetooth',
+      'ptt-',
+      'aud-',
+      '/whatsapp/',
+      '/alarms/',
+      '/notifications/',
+      '/ringtones/',
+      '/recordings/',
+    ];
+    if (junk.any(blob.contains)) return false;
+    if (durationMs > 0 && durationMs < 45000) return false;
+    if (durationMs > 20 * 60 * 1000) return false;
+    return true;
+  }
 }
 
 class DeviceLibrary {
@@ -84,7 +132,7 @@ class DeviceLibraryNotifier extends AsyncNotifier<DeviceLibrary> {
         ignoreCase: true,
       );
       final scanned = raw
-          .where((s) => (s.uri ?? s.data).isNotEmpty)
+          .where(_keepSong)
           .map(
             (s) => DeviceSong(
               id: '${s.id}',
@@ -92,6 +140,7 @@ class DeviceLibraryNotifier extends AsyncNotifier<DeviceLibrary> {
               artist: s.artist ?? '',
               uri: s.uri ?? s.data,
               durationMs: s.duration ?? 0,
+              album: s.album ?? '',
             ),
           )
           .toList();
@@ -99,6 +148,14 @@ class DeviceLibraryNotifier extends AsyncNotifier<DeviceLibrary> {
     } catch (_) {
       return DeviceLibrary(granted: true, songs: _picked);
     }
+  }
+
+  bool _keepSong(SongModel s) {
+    if ((s.uri ?? s.data).isEmpty) return false;
+    if (s.isRingtone == true || s.isNotification == true || s.isAlarm == true) {
+      return false;
+    }
+    return true;
   }
 
   Future<List<DeviceSong>> pickFiles() async {

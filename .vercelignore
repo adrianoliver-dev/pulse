@@ -1,0 +1,15 @@
+/secrets
+/dist
+*.apk
+.dart_tool
+/build
+/coverage
+/android
+/ios
+/linux
+/macos
+/windows
+/test
+*.jks
+*.keystore
+key.properties

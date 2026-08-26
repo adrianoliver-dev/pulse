@@ -66,3 +66,6 @@ assets/branding-jhon/
 /dist/
 /android/.kotlin/
 
+# Local Gemini / signing secrets — never commit
+/secrets/
+

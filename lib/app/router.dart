@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/models/workout_plan.dart';
+import '../features/coach/coach_screen.dart';
 import '../features/history/history_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/library/editor_screen.dart';
 import '../features/music/music_library_screen.dart';
+import '../features/music/now_playing_screen.dart';
 import '../features/music/playlist_editor_screen.dart';
 import '../features/settings/settings_screen.dart';
 import '../features/shell/shell_screen.dart';
@@ -76,6 +78,18 @@ GoRouter createRouter() {
         path: '/playlist/:id',
         builder: (context, state) {
           return PlaylistEditorScreen(playlistId: state.pathParameters['id']!);
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootKey,
+        path: '/now-playing',
+        builder: (context, state) => const NowPlayingScreen(),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootKey,
+        path: '/coach',
+        builder: (context, state) {
+          return CoachScreen(playlistMode: state.uri.queryParameters['mode'] == 'playlist');
         },
       ),
     ],

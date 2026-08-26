@@ -93,6 +93,16 @@ class SettingsNotifier extends Notifier<AppSettings> {
 
   Future<void> setThemeId(AppThemeId value) =>
       _persist(state.copyWith(themeId: value));
+
+  Future<void> setOnboardingDone(bool value) =>
+      _persist(state.copyWith(onboardingDone: value));
+
+  Future<void> setGeminiUserKey(String? value) => _persist(
+        state.copyWith(
+          geminiUserKey: value,
+          clearGeminiKey: value == null || value.trim().isEmpty,
+        ),
+      );
 }
 
 final settingsProvider =
@@ -104,4 +114,12 @@ final mediaItemProvider = StreamProvider<MediaItem?>((ref) {
 
 final playbackStateProvider = StreamProvider<PlaybackState>((ref) {
   return ref.watch(audioHandlerProvider).playbackState;
+});
+
+final positionProvider = StreamProvider<Duration>((ref) {
+  return ref.watch(audioHandlerProvider).positionStream;
+});
+
+final queueProvider = StreamProvider<List<MediaItem>>((ref) {
+  return ref.watch(audioHandlerProvider).queue;
 });

@@ -111,7 +111,7 @@ class WorkoutController extends Notifier<WorkoutViewState> {
           (t) => MediaItem(
             id: t.id,
             title: t.title,
-            artist: t.artist.isEmpty ? 'Pulse' : t.artist,
+            artist: t.artist.isEmpty ? 'Lejos' : t.artist,
             duration: Duration(milliseconds: t.durationMs),
             extras: {'uri': t.uri},
           ),

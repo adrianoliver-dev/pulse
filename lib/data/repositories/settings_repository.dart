@@ -16,6 +16,8 @@ class SettingsRepository {
   static const _kLastRoutine = 'lastRoutineId';
   static const _kLayout = 'timerLayout';
   static const _kTheme = 'appThemeId';
+  static const _kOnboarding = 'onboardingDone';
+  static const _kGemini = 'geminiUserKey';
 
   AppSettings load() {
     final behaviorName = _prefs.getString(_kBehavior);
@@ -38,6 +40,8 @@ class SettingsRepository {
         (t) => t.name == themeName,
         orElse: () => AppThemeId.clock,
       ),
+      onboardingDone: _prefs.getBool(_kOnboarding) ?? false,
+      geminiUserKey: _prefs.getString(_kGemini),
     );
   }
 
@@ -47,6 +51,7 @@ class SettingsRepository {
     await _prefs.setBool(_kBeeps, settings.countdownBeeps);
     await _prefs.setString(_kLayout, settings.timerLayout.name);
     await _prefs.setString(_kTheme, settings.themeId.name);
+    await _prefs.setBool(_kOnboarding, settings.onboardingDone);
     if (settings.localeCode == null) {
       await _prefs.remove(_kLocale);
     } else {
@@ -56,6 +61,11 @@ class SettingsRepository {
       await _prefs.remove(_kLastRoutine);
     } else {
       await _prefs.setString(_kLastRoutine, settings.lastRoutineId!);
+    }
+    if (settings.geminiUserKey == null || settings.geminiUserKey!.isEmpty) {
+      await _prefs.remove(_kGemini);
+    } else {
+      await _prefs.setString(_kGemini, settings.geminiUserKey!);
     }
   }
 }

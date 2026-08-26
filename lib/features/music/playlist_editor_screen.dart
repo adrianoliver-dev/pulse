@@ -56,6 +56,22 @@ class PlaylistEditorScreen extends ConsumerWidget {
                   t.artist.isEmpty ? l10n.artistUnknown : t.artist,
                   style: TextStyle(color: context.pulse.textMuted),
                 ),
+                onTap: () async {
+                  final items = tracks
+                      .map(
+                        (track) => MediaItem(
+                          id: track.id,
+                          title: track.title,
+                          artist: track.artist.isEmpty ? 'Lejos' : track.artist,
+                          duration: Duration(milliseconds: track.durationMs),
+                          extras: {'uri': track.uri},
+                        ),
+                      )
+                      .toList();
+                  await ref
+                      .read(audioHandlerProvider)
+                      .loadQueue(items, index: i, autoplay: true);
+                },
                 trailing: IconButton(
                   tooltip: l10n.removeTrack,
                   icon: const Icon(Icons.close),
@@ -79,7 +95,7 @@ class PlaylistEditorScreen extends ConsumerWidget {
                   (t) => MediaItem(
                     id: t.id,
                     title: t.title,
-                    artist: t.artist.isEmpty ? 'Pulse' : t.artist,
+                    artist: t.artist.isEmpty ? 'Lejos' : t.artist,
                     duration: Duration(milliseconds: t.durationMs),
                     extras: {'uri': t.uri},
                   ),

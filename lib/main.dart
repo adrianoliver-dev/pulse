@@ -40,7 +40,7 @@ Future<void> main() async {
             builder: PulseAudioHandler.new,
             config: const AudioServiceConfig(
               androidNotificationChannelId: 'com.adrianoliver.pulse.audio',
-              androidNotificationChannelName: 'Pulse',
+              androidNotificationChannelName: 'Lejos',
               androidStopForegroundOnPause: false,
               androidNotificationIcon: 'mipmap/ic_launcher',
               notificationColor: Color(0xFF050505),
@@ -81,7 +81,7 @@ class PulseBootFailed extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'PULSE',
+                  'LEJOS',
                   style: TextStyle(
                     color: Color(0xFFE8B86D),
                     letterSpacing: 4,

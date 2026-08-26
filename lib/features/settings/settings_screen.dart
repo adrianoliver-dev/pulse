@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../ai/gemini_key.dart';
 import '../../app/layout.dart';
 import '../../app/providers.dart';
 import '../../app/theme.dart';
@@ -187,6 +188,28 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const Divider(),
+          ListTile(
+            title: Text(l10n.replayOnboarding),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () =>
+                ref.read(settingsProvider.notifier).setOnboardingDone(false),
+          ),
+          const Divider(),
+          _SectionLabel(l10n.coachTitle, palette),
+          if (geminiApiKey.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: Text(
+                l10n.coachReady,
+                style: TextStyle(color: palette.textMuted),
+              ),
+            ),
+          ListTile(
+            title: Text(l10n.geminiKeyLabel),
+            subtitle: Text(l10n.geminiKeyHint),
+            onTap: () => _editGeminiKey(context, ref, settings.geminiUserKey),
+          ),
+          const Divider(),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
             child: Text(l10n.privacy, style: const TextStyle(fontWeight: FontWeight.w600)),
@@ -210,7 +233,7 @@ class SettingsScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              l10n.versionLabel('1.0.0'),
+              l10n.versionLabel('1.1.0'),
               style: TextStyle(color: palette.textMuted),
             ),
           ),
@@ -233,4 +256,33 @@ class _SectionLabel extends StatelessWidget {
       child: Text(label, style: TextStyle(color: palette.textMuted)),
     );
   }
+}
+
+Future<void> _editGeminiKey(
+  BuildContext context,
+  WidgetRef ref,
+  String? current,
+) async {
+  final l10n = AppLocalizations.of(context);
+  final controller = TextEditingController(text: current ?? '');
+  final value = await showDialog<String>(
+    context: context,
+    builder: (ctx) => AlertDialog(
+      title: Text(l10n.geminiKeyLabel),
+      content: TextField(
+        controller: controller,
+        obscureText: true,
+        decoration: InputDecoration(hintText: l10n.geminiKeyHint),
+      ),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l10n.cancel)),
+        TextButton(
+          onPressed: () => Navigator.pop(ctx, controller.text.trim()),
+          child: Text(l10n.save),
+        ),
+      ],
+    ),
+  );
+  if (value == null) return;
+  await ref.read(settingsProvider.notifier).setGeminiUserKey(value);
 }

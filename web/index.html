@@ -19,20 +19,20 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Pulse: interval timer with giant digits, local music, and a theme you pick.">
+  <meta name="description" content="Lejos: temporizador de intervalos que se lee al otro lado del cuarto. Números gigantes, tu música, racha diaria.">
   <meta name="theme-color" content="#050505">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Pulse">
+  <meta name="apple-mobile-web-app-title" content="Lejos">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>Pulse</title>
+  <title>Lejos</title>
   <link rel="manifest" href="manifest.json">
   <style>
     html, body {
@@ -40,7 +40,7 @@
       margin: 0;
       background: #050505;
     }
-    #pulse-splash {
+    #lejos-splash {
       position: fixed;
       inset: 0;
       z-index: 9999;
@@ -49,13 +49,13 @@
       align-items: center;
       justify-content: center;
       background: #050505;
-      color: #E8B86D;
+      color: #E8A317;
       font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.38em;
       font-weight: 650;
       font-size: 18px;
     }
-    #pulse-splash small {
+    #lejos-splash small {
       margin-top: 14px;
       color: #8A8A8A;
       letter-spacing: 0;
@@ -65,13 +65,13 @@
   </style>
 </head>
 <body>
-  <div id="pulse-splash">
-    PULSE
+  <div id="lejos-splash">
+    LEJOS
     <small>Cargando…</small>
   </div>
   <script>
     window.addEventListener('flutter-first-frame', function () {
-      var el = document.getElementById('pulse-splash');
+      var el = document.getElementById('lejos-splash');
       if (el) el.remove();
     });
   </script>

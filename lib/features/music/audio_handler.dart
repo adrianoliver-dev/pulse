@@ -91,6 +91,8 @@ class PulseAudioHandler extends BaseAudioHandler with QueueHandler, SeekHandler 
 
   bool get hasQueue => _items.isNotEmpty;
 
+  Stream<Duration> get positionStream => player.positionStream;
+
   @override
   Future<void> play() => player.play();
 

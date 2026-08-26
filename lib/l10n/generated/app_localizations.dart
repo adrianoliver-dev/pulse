@@ -62,7 +62,8 @@ import 'app_localizations_es.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,29 +84,30 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('es')
+    Locale('es'),
   ];
 
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Pulse'**
+  /// **'Lejos'**
   String get appTitle;
 
   /// No description provided for @tagline.
   ///
   /// In en, this message translates to:
-  /// **'Focus on the work.'**
+  /// **'Read it from across the room.'**
   String get tagline;
 
   /// No description provided for @navHome.
@@ -380,7 +383,7 @@ abstract class AppLocalizations {
   /// No description provided for @permissionMusicBody.
   ///
   /// In en, this message translates to:
-  /// **'Pulse plays files you already downloaded. Music keeps going through work and rest. Beeps sit on top — nothing is uploaded.'**
+  /// **'Lejos plays files already on this phone and hides WhatsApp, ringtones and SFX. Beeps sit on top of the track. Nothing is uploaded.'**
   String get permissionMusicBody;
 
   /// No description provided for @allowAccess.
@@ -488,7 +491,7 @@ abstract class AppLocalizations {
   /// No description provided for @privacyBody.
   ///
   /// In en, this message translates to:
-  /// **'Pulse stores routines, history and playlists only on this device. No account, no ads, no tracking.'**
+  /// **'Routines, history and playlists stay on this device. No account, no ads, no tracking. The AI coach sends your text or audio and, for playlists, only titles and artists — never the files — to Google Gemini.'**
   String get privacyBody;
 
   /// No description provided for @finishedTitle.
@@ -680,7 +683,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutPulse.
   ///
   /// In en, this message translates to:
-  /// **'Pulse is an interval timer you can read from across the room: giant digits, a theme you pick, and music that never stops for a beep.'**
+  /// **'Lejos is an interval timer you can read from across the room: giant digits, a theme you pick, and music that never stops for a beep.'**
   String get aboutPulse;
 
   /// No description provided for @appearance.
@@ -844,9 +847,400 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap to start'**
   String get tapToStart;
+
+  /// No description provided for @presetEmom.
+  ///
+  /// In en, this message translates to:
+  /// **'EMOM 50/10'**
+  String get presetEmom;
+
+  /// No description provided for @presetBox.
+  ///
+  /// In en, this message translates to:
+  /// **'Boxing 3×3'**
+  String get presetBox;
+
+  /// No description provided for @presetCore.
+  ///
+  /// In en, this message translates to:
+  /// **'Core 30/15'**
+  String get presetCore;
+
+  /// No description provided for @presetWarmup.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm-up 20/10'**
+  String get presetWarmup;
+
+  /// No description provided for @presetLongHiit.
+  ///
+  /// In en, this message translates to:
+  /// **'HIIT 45/15'**
+  String get presetLongHiit;
+
+  /// No description provided for @presetRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Run 90/30'**
+  String get presetRun;
+
+  /// No description provided for @presetStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Strength 45/90'**
+  String get presetStrength;
+
+  /// No description provided for @presetPyramid.
+  ///
+  /// In en, this message translates to:
+  /// **'Pyramid'**
+  String get presetPyramid;
+
+  /// No description provided for @presetStretch.
+  ///
+  /// In en, this message translates to:
+  /// **'Stretch 45/15'**
+  String get presetStretch;
+
+  /// No description provided for @onboardingSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboardingSkip;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboardingNext;
+
+  /// No description provided for @onboardingStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get onboardingStart;
+
+  /// No description provided for @onboarding1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Read it from across the room.'**
+  String get onboarding1Title;
+
+  /// No description provided for @onboarding1Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Giant digits, an optional ring, a theme you pick. Tap the clock to pause.'**
+  String get onboarding1Body;
+
+  /// No description provided for @onboarding2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Music never stops for a beep.'**
+  String get onboarding2Title;
+
+  /// No description provided for @onboarding2Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Play files already on your phone. Cues sit on top. Nothing is uploaded.'**
+  String get onboarding2Body;
+
+  /// No description provided for @onboarding3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t break the streak.'**
+  String get onboarding3Title;
+
+  /// No description provided for @onboarding3Body.
+  ///
+  /// In en, this message translates to:
+  /// **'One finished session a day keeps the fire. Same idea as Duolingo, for training.'**
+  String get onboarding3Body;
+
+  /// No description provided for @onboarding4Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Say it. Lejos builds it.'**
+  String get onboarding4Title;
+
+  /// No description provided for @onboarding4Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Record a voice note or type: who you are, your week, or just today. Lejos builds the routine and a playlist from your music.'**
+  String get onboarding4Body;
+
+  /// No description provided for @streakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak'**
+  String get streakLabel;
+
+  /// No description provided for @streakDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days'**
+  String streakDays(int count);
+
+  /// No description provided for @streakLongest.
+  ///
+  /// In en, this message translates to:
+  /// **'Best {count}'**
+  String streakLongest(int count);
+
+  /// No description provided for @streakTodayDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Today counts'**
+  String get streakTodayDone;
+
+  /// No description provided for @streakTodayTodo.
+  ///
+  /// In en, this message translates to:
+  /// **'Train today to keep it'**
+  String get streakTodayTodo;
+
+  /// No description provided for @streakStartToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Start today'**
+  String get streakStartToday;
+
+  /// No description provided for @streakWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} this week'**
+  String streakWeek(int count);
+
+  /// No description provided for @streakMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String streakMinutes(int minutes);
+
+  /// No description provided for @coachTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI coach'**
+  String get coachTitle;
+
+  /// No description provided for @coachSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell it your day or your week. It can also build playlists from this phone.'**
+  String get coachSubtitle;
+
+  /// No description provided for @coachToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Just today'**
+  String get coachToday;
+
+  /// No description provided for @coachWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'The week'**
+  String get coachWeek;
+
+  /// No description provided for @coachPlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'Playlist'**
+  String get coachPlaylist;
+
+  /// No description provided for @coachHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. night sessions, 20 min HIIT today'**
+  String get coachHint;
+
+  /// No description provided for @coachHintPlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. make a rock mix, or only Cuarteto de Nos'**
+  String get coachHintPlaylist;
+
+  /// No description provided for @coachRecord.
+  ///
+  /// In en, this message translates to:
+  /// **'Record'**
+  String get coachRecord;
+
+  /// No description provided for @coachStopRecord.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get coachStopRecord;
+
+  /// No description provided for @coachGenerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Build'**
+  String get coachGenerate;
+
+  /// No description provided for @coachSaveAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Save all'**
+  String get coachSaveAll;
+
+  /// No description provided for @coachSaveOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get coachSaveOne;
+
+  /// No description provided for @coachStartThis.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get coachStartThis;
+
+  /// No description provided for @coachEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No plan yet. Type or record, then build.'**
+  String get coachEmpty;
+
+  /// No description provided for @coachNeedKey.
+  ///
+  /// In en, this message translates to:
+  /// **'The coach needs a Gemini key. Paste it in Settings, or ask whoever sent you the app.'**
+  String get coachNeedKey;
+
+  /// No description provided for @coachNeedMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow access to your music first.'**
+  String get coachNeedMusic;
+
+  /// No description provided for @coachSavedRoutines.
+  ///
+  /// In en, this message translates to:
+  /// **'Routines saved'**
+  String get coachSavedRoutines;
+
+  /// No description provided for @coachSavedPlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'Playlist ready'**
+  String get coachSavedPlaylist;
+
+  /// No description provided for @coachError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not build that. Try again or shorten the request.'**
+  String get coachError;
+
+  /// No description provided for @coachVoiceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Say who you are and what you want today or this week.'**
+  String get coachVoiceHint;
+
+  /// No description provided for @nowPlayingQueue.
+  ///
+  /// In en, this message translates to:
+  /// **'Up next'**
+  String get nowPlayingQueue;
+
+  /// No description provided for @repeatOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat track'**
+  String get repeatOne;
+
+  /// No description provided for @repeatAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat queue'**
+  String get repeatAll;
+
+  /// No description provided for @repeatOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat off'**
+  String get repeatOff;
+
+  /// No description provided for @shuffleOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Shuffle'**
+  String get shuffleOn;
+
+  /// No description provided for @aiMix.
+  ///
+  /// In en, this message translates to:
+  /// **'Build with AI'**
+  String get aiMix;
+
+  /// No description provided for @filterShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Music only'**
+  String get filterShort;
+
+  /// No description provided for @showAllSongs.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything'**
+  String get showAllSongs;
+
+  /// No description provided for @hiddenJunk.
+  ///
+  /// In en, this message translates to:
+  /// **'{hidden} clips hidden (WhatsApp, SFX, ringtones)'**
+  String hiddenJunk(int hidden);
+
+  /// No description provided for @replayOnboarding.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay intro'**
+  String get replayOnboarding;
+
+  /// No description provided for @geminiKeyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Gemini key (optional)'**
+  String get geminiKeyLabel;
+
+  /// No description provided for @geminiKeyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only if the coach is not baked into this build'**
+  String get geminiKeyHint;
+
+  /// No description provided for @coachReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Coach is ready on this device'**
+  String get coachReady;
+
+  /// No description provided for @historyRepeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat'**
+  String get historyRepeat;
+
+  /// No description provided for @dayToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get dayToday;
+
+  /// No description provided for @dayYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get dayYesterday;
+
+  /// No description provided for @seek.
+  ///
+  /// In en, this message translates to:
+  /// **'Position'**
+  String get seek;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -855,25 +1249,26 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en', 'es'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return AppLocalizationsEn();
-    case 'es': return AppLocalizationsEs();
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

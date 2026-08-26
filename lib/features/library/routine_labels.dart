@@ -27,6 +27,15 @@ String localizedNameForId(String id, String fallbackName, AppLocalizations l10n)
     presetTabataId => l10n.presetTabata,
     presetHiitId => l10n.presetHiit,
     presetSprintId => l10n.presetSprint,
+    presetEmomId => l10n.presetEmom,
+    presetBoxId => l10n.presetBox,
+    presetCoreId => l10n.presetCore,
+    presetWarmupId => l10n.presetWarmup,
+    presetLongHiitId => l10n.presetLongHiit,
+    presetRunId => l10n.presetRun,
+    presetStrengthId => l10n.presetStrength,
+    presetPyramidId => l10n.presetPyramid,
+    presetStretchId => l10n.presetStretch,
     _ => fallbackName.isEmpty ? l10n.untitled : fallbackName,
   };
 }
@@ -35,6 +44,15 @@ const kPresetHomeOrder = [
   presetSprintId,
   presetTabataId,
   presetHiitId,
+  presetEmomId,
+  presetBoxId,
+  presetCoreId,
+  presetWarmupId,
+  presetLongHiitId,
+  presetRunId,
+  presetStrengthId,
+  presetPyramidId,
+  presetStretchId,
   presetPushupsId,
 ];
 
